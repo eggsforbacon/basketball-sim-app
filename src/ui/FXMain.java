@@ -6,11 +6,11 @@ import javafx.stage.Stage;
 public class FXMain extends Application {
 
     public static void main(String[] args) {
-        
+
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-
+    public void start(Stage primaryStage) {
+        
     }
 }
