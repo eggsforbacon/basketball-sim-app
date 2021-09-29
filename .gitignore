@@ -1,0 +1,8 @@
+.idea
+out
+bin
+basketball-sim-app.iml
+/nbproject/
+/build.xml
+/manifest.mf
+/build/
