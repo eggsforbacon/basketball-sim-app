@@ -6,5 +6,4 @@ basketball-sim-app.iml
 /build.xml
 /manifest.mf
 /build/
-docs/~$gineering Method.docx
-docs/~WRL1841.tmp
+.gitignore
