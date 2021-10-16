@@ -1,6 +1,6 @@
 package ui;
 
-import model.Fiba;
+import model.objects.Fiba;
 
 public class FXController {
     

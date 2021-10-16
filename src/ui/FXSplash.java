@@ -12,13 +12,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.Baancc;
+import model.objects.Fiba;
 
 public class FXSplash extends Preloader {
 
     //---------------------------- Attributes of FxSplash class ----------------------------\\
     @SuppressWarnings("FieldMayBeFinal")
-    private Baancc bc;
+    private Fiba fb;
     @SuppressWarnings("FieldMayBeFinal")
     private FXController controller;
     private Stage preloaderStage;
@@ -31,8 +31,8 @@ public class FXSplash extends Preloader {
      * @throws IOException
      */
     public FXSplash() throws IOException {
-        bc = new Baancc();
-        controller = new FXController(bc);
+        fb = new Fiba();
+        controller = new FXController(fb);
     }
 
     /**
