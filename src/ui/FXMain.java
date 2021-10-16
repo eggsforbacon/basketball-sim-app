@@ -17,25 +17,25 @@ public class FXMain extends Application {
 
     public static boolean loaded = false;
     private Fiba fb;
-    private FXController controller;
+    private FXController xMenu;
 
     private static final int COUNT_LIMIT = 30000;
 
     public FXMain() throws IOException {
         fb = new Fiba();
-        controller = new FXController(fb);
+        xMenu = new FXController(fb);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/login.fxml"));
-        fxmlLoader.setController(controller);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Menu.fxml"));
+        fxmlLoader.setController(xMenu);
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        primaryStage.getIcons().add(new Image(new File("resources/image/baancc.png").toURI().toString()));
+        primaryStage.getIcons().add(new Image(new File("resources/img/logo/logo_small_icon_only.png").toURI().toString()));
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Baancc");
+        primaryStage.setTitle("FIBA Stats");
         primaryStage.show();
     }
 

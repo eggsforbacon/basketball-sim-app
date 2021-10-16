@@ -8,3 +8,4 @@ basketball-sim-app.iml
 /build/
 .gitignore
 docs/~$gineering Method.docx
+/dist/

@@ -1,7 +1,7 @@
 package model.data_structures;
 
 import model.interfaces.*;
-import model.objects.Client;
+//import model.objects.Client;
 
 import java.util.NoSuchElementException;
 
@@ -118,6 +118,7 @@ public class DefaultQueue<T> implements Queue<T> {
         return reversed;
     }
 
+    /*
     public Client[] toClientArray() {
         Client[] array = new Client[size];
 
@@ -129,7 +130,7 @@ public class DefaultQueue<T> implements Queue<T> {
         return array;
 // 612 <- 287 || 287 <- 612 || 612 <- 287
     }
-
+     */
     public void toQueue(T[] array) {
         front = null;
         rear = null;

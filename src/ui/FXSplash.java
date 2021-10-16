@@ -3,12 +3,10 @@ package ui;
 import java.io.File;
 import java.io.IOException;
 import javafx.application.Preloader;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -16,43 +14,26 @@ import model.objects.Fiba;
 
 public class FXSplash extends Preloader {
 
-    //---------------------------- Attributes of FxSplash class ----------------------------\\
     @SuppressWarnings("FieldMayBeFinal")
     private Fiba fb;
     @SuppressWarnings("FieldMayBeFinal")
-    private FXController controller;
+    private FXController xMenu;
     private Stage preloaderStage;
     private Scene scene;
 
-    //-------------------------- Constructor class --------------------------\\
-    /**
-     * FXSplash class constructor, initialize all relations.
-     *
-     * @throws IOException
-     */
     public FXSplash() throws IOException {
         fb = new Fiba();
-        controller = new FXController(fb);
+        xMenu = new FXController(fb);
     }
 
-    /**
-     * Configure the FXGUI
-     *
-     * @throws Exception
-     */
     @Override
     public void init() throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/welcome.fxml"));
-        fxmlLoader.setController(controller);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Welcome.fxml"));
+        fxmlLoader.setController(xMenu);
         Parent root = fxmlLoader.load();
         scene = new Scene(root);
     }
 
-    /**
-     * Start to show the GUI
-     *
-     * @throws Exception
-     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.preloaderStage = primaryStage;
@@ -60,7 +41,7 @@ public class FXSplash extends Preloader {
         preloaderStage.initStyle(StageStyle.TRANSPARENT);
         preloaderStage.setScene(scene);
         preloaderStage.setResizable(false);
-        preloaderStage.getIcons().add(new Image(new File("resources/image/baancc.png").toURI().toString()));
+        preloaderStage.getIcons().add(new Image(new File("resources/img/logo/logo_small_icon_only.png").toURI().toString()));
         preloaderStage.show();
     }
 
