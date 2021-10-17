@@ -17,7 +17,7 @@ public class FXController implements Serializable, Initializable {
     @FXML
     private Pane pMainMenu;
     @FXML
-    private ImageView iLogo;
+    private ImageView iLogo = new ImageView();
     private static final long serialVersionUID = 1;
     private final String SAVE_PATH_FILE = "data/RentingCar.cgd";
     @SuppressWarnings("FieldMayBeFinal")

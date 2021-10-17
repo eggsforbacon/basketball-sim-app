@@ -27,7 +27,7 @@ public class Player {
     private double offensiveBPM; //(OBPM) <- WITHIN 10 AND -10
 
     //Sample raw data string:
-    // NAME; AGE; NUM; POS; "Inactivo"/"Activo"; PTS; GA; GS; FTA; TOV; MP; AST; ORB; DRB; DBPM; OBPM; TM NAME; TM PLAYERS NUM; TM MP; TM GA; TM GS; TM FTA; TM TOV; TM TRB; Opponent Rebounds
+    // NAME; AGE; NUM; POS; ACTIVE; 2PTS; 3PTS; GA; GS; FTA; TOV; MP; AST; ORB; DRB; DBPM; OBPM; TM NAME; TM PLAYERS NUM; TM MP; TM GA; TM GS; TM FTA; TM TOV; TM TRB; Opponent Rebounds
 
     private int totalRebounds; // = offensiveRebounds + defensiveRebounds (TRB)
     private final double BIAS = 0.44;
@@ -38,6 +38,7 @@ public class Player {
     private double usagePercentage; //FORMULA: 100 * ((GA + BIAS * FTA + TOV) * (Tm MP / 5)) / (MP * (Tm GA + BIAS * Tm FTA + Tm TOV))
     private double assistPercentage; //FORMULA: 100 * AST / (((MP / (Tm MP / 5)) * Tm GS) - GS)
     private double reboundPercentage; //FORMULA: 100 * (TRB * (Tm MP / 5)) / (MP * (Tm TRB + Opp RBD))
+
 
 
 }

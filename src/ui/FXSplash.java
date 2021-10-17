@@ -35,7 +35,7 @@ public class FXSplash extends Preloader {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         this.preloaderStage = primaryStage;
         scene.setFill(Color.TRANSPARENT);
         preloaderStage.initStyle(StageStyle.TRANSPARENT);
@@ -61,6 +61,7 @@ public class FXSplash extends Preloader {
                 preloaderStage.hide();
                 break;
             case BEFORE_LOAD:
+                //Call Preloader thread
                 break;
         }
     }
