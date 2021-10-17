@@ -1,6 +1,8 @@
 package model.objects;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
 
     //Basic Info
 
@@ -39,6 +41,7 @@ public class Player {
     private double assistPercentage; //FORMULA: 100 * AST / (((MP / (Tm MP / 5)) * Tm GS) - GS)
     private double reboundPercentage; //FORMULA: 100 * (TRB * (Tm MP / 5)) / (MP * (Tm TRB + Opp RBD))
 
-
-
+    public Player(String name) {
+        this.name = name;
+    }
 }

@@ -60,4 +60,8 @@ public class FXController implements Serializable, Initializable {
     void onImport(ActionEvent event) {
 
     }
+
+    public void setFb(Fiba fb) {
+        this.fb = fb;
+    }
 }

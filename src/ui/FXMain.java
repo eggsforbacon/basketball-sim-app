@@ -1,10 +1,7 @@
 package ui;
 
-import com.sun.javafx.application.LauncherImpl;
 
 import java.io.File;
-import java.io.IOException;
-import javafx.application.Preloader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

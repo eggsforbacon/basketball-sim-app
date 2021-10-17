@@ -1,10 +1,11 @@
 package model.data_structures;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import model.interfaces.*;
 
-class HashNode<K, V> {
+class HashNode<K, V> implements Serializable {
 
     K key;
     V value;
@@ -28,7 +29,7 @@ class HashNode<K, V> {
     }
 }
 
-public class DefaultHashTable<K, V> implements HashTable<K, V> {
+public class DefaultHashTable<K, V> implements HashTable<K, V>, Serializable {
 
     private HashNode<?, ?>[] table;
     private int size;

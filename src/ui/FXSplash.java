@@ -75,4 +75,8 @@ public class FXSplash implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public FXController getxMenu() {
+        return xMenu;
+    }
 }

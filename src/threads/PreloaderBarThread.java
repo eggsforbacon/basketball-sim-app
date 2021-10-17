@@ -19,6 +19,7 @@ public class PreloaderBarThread extends Thread {
 
     @Override
     public void run() {
+        new Load(fb).start();
         pause(1000);
         int LOADING_TIME_INTERVAL = 10;
         while (bar.isActive()) {
@@ -44,6 +45,8 @@ public class PreloaderBarThread extends Thread {
 
         }
         Platform.runLater(new Thread(() -> preloader.postLoaded()));
+
+        Platform.runLater(new Thread(() -> preloader.getxMenu().setFb(fb)));
     }
 
     private void pause(int millis) {
