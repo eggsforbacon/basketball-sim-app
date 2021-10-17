@@ -2,67 +2,77 @@ package ui;
 
 import java.io.File;
 import java.io.IOException;
-import javafx.application.Preloader;
+import java.net.URL;
+import java.text.DecimalFormat;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import model.objects.Fiba;
+import model.objects.PreloaderBar;
+import threads.PreloaderBarThread;
 
-public class FXSplash extends Preloader {
+public class FXSplash implements Initializable {
 
-    @SuppressWarnings("FieldMayBeFinal")
+    //FXML FIELDS
+
+    @FXML
+    private Rectangle pBarRCT;
+
+    @FXML
+    private ImageView iLogo = new ImageView();
+
     private Fiba fb;
-    @SuppressWarnings("FieldMayBeFinal")
+    private PreloaderBar bar;
+    private boolean isLoaded;
     private FXController xMenu;
     private Stage preloaderStage;
     private Scene scene;
 
-    public FXSplash() throws IOException {
-        fb = new Fiba();
+    private static final int COUNT_LIMIT = 30000;
+
+    public FXSplash(Fiba fb) {
+        this.fb = fb;
+        bar = new PreloaderBar();
+        isLoaded = false;
         xMenu = new FXController(fb);
     }
 
     @Override
-    public void init() throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Welcome.fxml"));
-        fxmlLoader.setController(xMenu);
-        Parent root = fxmlLoader.load();
-        scene = new Scene(root);
+    public void initialize(URL location, ResourceBundle resources) {
+        bar.setActive(true);
+        //Call loading thread here
+        new PreloaderBarThread(fb, this, bar).start();
+        iLogo.setImage(new Image(new File("resources/img/logo/logo_small.png").toURI().toString()));
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        this.preloaderStage = primaryStage;
-        scene.setFill(Color.TRANSPARENT);
-        preloaderStage.initStyle(StageStyle.TRANSPARENT);
-        preloaderStage.setScene(scene);
-        preloaderStage.setResizable(false);
-        preloaderStage.getIcons().add(new Image(new File("resources/img/logo/logo_small_icon_only.png").toURI().toString()));
-        preloaderStage.show();
+    public void loadBar() throws InterruptedException {
+        double newWidth = bar.getBarWidth();
+        pBarRCT.setWidth(newWidth);
+        double percentage = (newWidth / bar.LOADED_WIDTH) * 100;
     }
 
-    @Override
-    public void handleApplicationNotification(Preloader.PreloaderNotification info) {
-        if (info instanceof Preloader.ProgressNotification) {
-        }
-    }
-
-    @Override
-    public void handleStateChangeNotification(Preloader.StateChangeNotification info) {
-        Preloader.StateChangeNotification.Type type = info.getType();
-        switch (type) {
-            case BEFORE_INIT:
-                break;
-            case BEFORE_START:
-                preloaderStage.hide();
-                break;
-            case BEFORE_LOAD:
-                //Call Preloader thread
-                break;
+    public void postLoaded() {
+        ((Stage) pBarRCT.getScene().getWindow()).close();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Menu.fxml"));
+            fxmlLoader.setController(xMenu);
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene((scene));
+            stage.getIcons().add(new Image(new File("resources/img/logo/logo_small_icon_only.png").toURI().toString()));
+            stage.setResizable(false);
+            stage.setTitle("FIBA Stats");
+            stage.show();
+        } catch(IOException e) {
+            e.printStackTrace();
         }
     }
 }

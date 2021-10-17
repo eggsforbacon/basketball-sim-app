@@ -10,45 +10,38 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.objects.Fiba;
 
 public class FXMain extends Application {
 
-    public static boolean loaded = false;
     private Fiba fb;
-    private FXController xMenu;
+    private FXSplash splashController;
 
-    private static final int COUNT_LIMIT = 30000;
-
-    public FXMain() throws IOException {
+    public FXMain() {
         fb = new Fiba();
-        xMenu = new FXController(fb);
+        splashController = new FXSplash(fb);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Menu.fxml"));
-        fxmlLoader.setController(xMenu);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Welcome.fxml"));
+        fxmlLoader.setController(splashController);
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
         primaryStage.getIcons().add(new Image(new File("resources/img/logo/logo_small_icon_only.png").toURI().toString()));
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.setTitle("FIBA Stats");
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.setTitle("Loading...");
         primaryStage.show();
     }
 
-    @Override
-    public void init() throws Exception {
-        for (int i = 0; i < COUNT_LIMIT; i++) {
-            double progress = (100 * i) / COUNT_LIMIT;
-            LauncherImpl.notifyPreloader(this, new Preloader.ProgressNotification(progress));
-        }
-    }
-
     public static void main(String[] args) {
-        LauncherImpl.launchApplication(FXMain.class, FXSplash.class, args);
+        launch(args);
     }
 
     @Override
