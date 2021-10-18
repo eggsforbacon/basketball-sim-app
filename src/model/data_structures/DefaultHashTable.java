@@ -6,7 +6,6 @@ import java.util.Objects;
 import model.interfaces.*;
 
 class HashNode<K, V> implements Serializable {
-
     K key;
     V value;
 
@@ -52,75 +51,50 @@ public class DefaultHashTable<K, V> implements HashTable<K, V>, Serializable {
 
     @Override
     public int insert(K key, V value) throws Exception {
-
         int i = 0;
-
         do {
-
             int j = hash(key, i);
-
             if (table[j] == null) {
                 table[j] = new HashNode<>(key, value);
                 size++;
                 return j;
-
             }
-
             i++;
-
         } while (i != arraySize);
         throw new Exception("Desbordamiento de tabla hash");
-
     }
 
     @Override
     public void delete(K key) throws Exception {
-
         int i = 0;
-
         do {
-
             int j = hash(key, i);
-
             try {
                 if (table[j].getKey() == key) {
                     table[j] = null;
                     size--;
                     return;
-
                 }
-            }catch (NullPointerException e){}
-
-
-
+            } catch (NullPointerException e) {
+            }
             i++;
-
         } while (i != arraySize);
         throw new Exception("Desbordamiento de tabla hash");
-
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public V search(K key) {
-
         int i = 0;
         int j;
-
         do {
-
             j = hash(key, i);
-           
             if (table[j] != null && table[j].getKey().equals(key)) {
                 return (V) table[j].getValue();
-
             }
-
             i++;
-
         } while (i != arraySize);
         return null;
-
     }
 
     @Override
@@ -132,5 +106,4 @@ public class DefaultHashTable<K, V> implements HashTable<K, V>, Serializable {
     public int size() {
         return size;
     }
-
 }

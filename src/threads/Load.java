@@ -23,8 +23,6 @@ public class Load extends Thread{
             ois.close();
         } catch (Exception e) {
         }
-
-
     }
 
     public void setFb(Fiba fb) {

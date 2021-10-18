@@ -39,7 +39,7 @@ public class PreloaderBarThread extends Thread {
                 }
 
                 if (percentage >= 95.00 && percentage < 95.10 /*&& !PreloaderThread.isLoaded()*/) {
-                    System.out.println("Wait here");
+                    //Wait Here (?
                 }
             }
 

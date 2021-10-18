@@ -3,7 +3,6 @@ package ui;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +18,6 @@ import model.objects.PreloaderBar;
 import threads.PreloaderBarThread;
 
 public class FXSplash implements Initializable {
-
-    //FXML FIELDS
 
     @FXML
     private Rectangle pBarRCT;
@@ -47,7 +44,6 @@ public class FXSplash implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         bar.setActive(true);
-        //Call loading thread here
         new PreloaderBarThread(fb, this, bar).start();
         iLogo.setImage(new Image(new File("resources/img/logo/logo_small.png").toURI().toString()));
     }

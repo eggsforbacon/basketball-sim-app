@@ -1,8 +1,12 @@
 package model.objects;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import model.data_structures.DefaultHashTable;
 
 import java.io.Serializable;
+import javafx.stage.FileChooser;
 
 public class Fiba implements Serializable {
 
@@ -16,6 +20,28 @@ public class Fiba implements Serializable {
 
     public Fiba() {
 
+    }
+
+    public File fileChooser() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Open File Client");
+        File file = fc.showOpenDialog(null);
+        return file;
+    }
+
+    public boolean importData() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileChooser()));
+            String line = br.readLine();
+            line = br.readLine();
+            while (line != null) {
+                //TO DO
+            }
+            br.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public DefaultHashTable<String, Team> getTeams() {

@@ -23,28 +23,28 @@
       </MenuBar>
       <Pane layoutY="30.0" prefHeight="450.0" prefWidth="365.0" style="-fx-background-color: #646464;">
          <children>
-            <JFXButton layoutX="93.0" layoutY="75.0" onAction="#onBPlayers" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="Players">
+            <JFXButton layoutX="92.0" layoutY="225.0" onAction="#onBStats" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" text="Stats">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="iStat" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/img/others/stats.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="93.0" layoutY="165.0" onAction="#onBTeams" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="Teams">
+            <JFXButton layoutX="92.0" layoutY="136.0" onAction="#onBPlayers" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" text="Players">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
-               </graphic>
-            </JFXButton>
-            <JFXButton layoutX="92.0" layoutY="248.0" onAction="#onBStats" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: #F4F4F4;" text="Stats">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="iPlayer" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/img/others/Players.jpg" />
+                     </image>
+                  </ImageView>
                </graphic>
             </JFXButton>
             <Label layoutX="139.0" layoutY="342.0" text="\@CopyRight" textFill="WHITE" />

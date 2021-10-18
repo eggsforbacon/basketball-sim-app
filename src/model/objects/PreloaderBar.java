@@ -16,20 +16,13 @@ public class PreloaderBar {
         else barWidth++;
     }
 
-    /*Getters*/
-
     public double getBarWidth() {
         return barWidth;
     }
 
-    /**
-     * @return The current status of the Preloader Bar. <br>
-     */
     public boolean isActive() {
         return active;
     }
-
-    /*Setters*/
 
     public void setActive(boolean active) {
         this.active = active;
