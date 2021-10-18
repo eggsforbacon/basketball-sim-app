@@ -28,9 +28,6 @@ public class Player implements Serializable {
     private double defensiveBPM; //(DBPM) <- WITHIN 10 AND -10
     private double offensiveBPM; //(OBPM) <- WITHIN 10 AND -10
 
-    //Sample raw data string:
-    // NAME; AGE; NUM; POS; ACTIVE; 2PTS; 3PTS; GA; GS; FTA; TOV; MP; AST; ORB; DRB; DBPM; OBPM; TM NAME; TM PLAYERS NUM; TM MP; TM GA; TM GS; TM FTA; TM TOV; TM TRB; Opponent Rebounds
-
     private double totalRebounds; // = offensiveRebounds + defensiveRebounds (TRB)
     private double totalShootingAttempts; //GA + 0.44 * FTA (TSA)
 
@@ -43,6 +40,24 @@ public class Player implements Serializable {
 
     public Player(String name) {
         this.name = name;
+    }
+
+    public Player(String name, int age, int number, String position, boolean active,
+                  int points, double turnoverPercentage, double usagePercentage, double assistPercentage,
+                  double reboundPercentage, double defensiveBPM, double offensiveBPM, String teamName) {
+        this.name = name;
+        this.age = age;
+        this.number = number;
+        this.position = position;
+        this.active = active;
+        this.points = points;
+        this.turnoverPercentage = turnoverPercentage;
+        this.usagePercentage = usagePercentage;
+        this.assistPercentage = assistPercentage;
+        this.reboundPercentage = reboundPercentage;
+        this.defensiveBPM = defensiveBPM;
+        this.offensiveBPM = offensiveBPM;
+        team = new Team(teamName);
     }
 
     public Player(String name, int age, int number, String position, boolean active,
