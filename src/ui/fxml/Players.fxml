@@ -63,7 +63,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="306.0" layoutY="5.0" mnemonicParsing="false">
+                  <Button layoutX="306.0" layoutY="5.0" mnemonicParsing="false" onAction="#onPrev">
                      <graphic>
                         <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -71,7 +71,7 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="379.0" layoutY="5.0" mnemonicParsing="false">
+                  <Button layoutX="379.0" layoutY="5.0" mnemonicParsing="false" onAction="#onNext">
                      <graphic>
                         <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                            <image>
