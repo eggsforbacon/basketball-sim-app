@@ -8,52 +8,59 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pMainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="1264.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="1264.0" style="-fx-background-color: #009999;">
-        <menus>
-            <Menu mnemonicParsing="false" text="Import">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onImport" text="Data ⮞" />
-               </items>
-            </Menu>
-        </menus>
-      </MenuBar>
-      <Pane layoutY="30.0" prefHeight="450.0" prefWidth="365.0" style="-fx-background-color: #646464;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="1264.0">
          <children>
-            <JFXButton layoutX="92.0" layoutY="225.0" onAction="#onBStats" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" text="Stats">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-               <graphic>
-                  <ImageView fx:id="iStat" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/img/others/stats.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton layoutX="92.0" layoutY="136.0" onAction="#onBPlayers" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" text="Players">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-               <graphic>
-                  <ImageView fx:id="iPlayer" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/img/others/Players.jpg" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <Label layoutX="139.0" layoutY="342.0" text="\@CopyRight" textFill="WHITE" />
-            <Label layoutX="43.0" layoutY="359.0" text="Arturo Diaz | David Montaño | Samuel Hernandez" textFill="WHITE" />
+            <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="1264.0" style="-fx-background-color: #009999;">
+              <menus>
+                  <Menu mnemonicParsing="false" text="Import">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onImport" text="Data ⮞" />
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <Pane layoutY="30.0" prefHeight="450.0" prefWidth="365.0" style="-fx-background-color: #646464;">
+               <children>
+                  <JFXButton layoutX="92.0" layoutY="225.0" onAction="#onBStats" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" text="Stats">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fx:id="iStat" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/img/others/stats.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton layoutX="92.0" layoutY="136.0" onAction="#onBPlayers" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" text="Players">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fx:id="iPlayer" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/img/others/Players.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <Label layoutX="139.0" layoutY="342.0" text="\@CopyRight" textFill="WHITE" />
+                  <Label layoutX="43.0" layoutY="359.0" text="Arturo Diaz | David Montaño | Samuel Hernandez" textFill="WHITE" />
+               </children>
+            </Pane>
+            <ImageView fx:id="iLogo" fitHeight="314.0" fitWidth="706.0" layoutX="469.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../basketball-sim-app/resources/img/logo/logo_large.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="iLogo" fitHeight="314.0" fitWidth="706.0" layoutX="469.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../basketball-sim-app/resources/img/logo/logo_large.png" />
-         </image></ImageView>
    </children>
-</Pane>
+</StackPane>

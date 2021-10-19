@@ -1,5 +1,8 @@
 package ui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,14 +19,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.stage.WindowEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import model.objects.Fiba;
 
 public class FXController implements Serializable, Initializable {
 
     @FXML
-    private Pane pMainMenu;
+    private StackPane stackPane;
     @FXML
     private ImageView iLogo = new ImageView();
     @FXML
@@ -33,7 +36,7 @@ public class FXController implements Serializable, Initializable {
     @FXML
     private ImageView iStat = new ImageView();
     private static final long serialVersionUID = 1;
-    private final String SAVE_PATH_FILE = "data/RentingCar.cgd";
+    private final String SAVE_PATH_FILE = "data/persistent/Data.das";
     @SuppressWarnings("FieldMayBeFinal")
     private Fiba fb;
     private FXPlayer xPlayer;
@@ -65,14 +68,28 @@ public class FXController implements Serializable, Initializable {
         oos.close();
     }
 
-    public Stage newStage(Parent root) {
+    public void newStage(Parent root) {
         Stage newStage = new Stage();
         Scene scene = new Scene(root);
         newStage.setScene(scene);
         newStage.setTitle("FIBA Stats");
+        newStage.getIcons().add(new Image(new File("resources/img/logo/logo_small_icon_only.png").toURI().toString()));
         newStage.setResizable(false);
         newStage.show();
-        return newStage;
+    }
+
+    public void showAlert(boolean success, String msg, StackPane stackPane) {
+        JFXDialogLayout content = new JFXDialogLayout();
+        JFXButton button = new JFXButton("Okay");
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+        button.setOnAction((ActionEvent event) -> {
+            dialog.close();
+        });
+        content.setActions(button);
+        String header = (success) ? "¡Listo!" : "¡Error!";
+        content.setHeading(new Text(header));
+        content.setBody(new Text(msg));
+        dialog.show();
     }
 
     @FXML
@@ -80,7 +97,7 @@ public class FXController implements Serializable, Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Players.fxml"));
         fxmlLoader.setController(xPlayer);
         Parent root = fxmlLoader.load();
-        Stage clientStage = newStage(root);
+        newStage(root);
     }
 
     @FXML
@@ -90,7 +107,9 @@ public class FXController implements Serializable, Initializable {
 
     @FXML
     public void onImport(ActionEvent event) throws IOException {
-        fb.importData();
+        boolean imported = fb.importData();
+        String msg = (imported) ? "Yei" : "Oh no";
+        showAlert(imported, msg, stackPane);
         saveData();
     }
 }
