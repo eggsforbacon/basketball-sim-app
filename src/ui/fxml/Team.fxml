@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="bPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="472.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Pane prefHeight="43.0" prefWidth="472.0" style="-fx-background-color: #009999;">
+               <children>
+                  <Label layoutX="130.0" layoutY="7.0" text="TEAMS REGISTRATION" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="7.0" layoutY="49.0" prefHeight="57.0" prefWidth="458.0" style="-fx-background-color: #f4efef;">
+               <children>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="5.0" prefHeight="46.0" prefWidth="54.0" style="-fx-background-color: #009999;" text=" ">
+                     <graphic>
+                        <ImageView fx:id="iAddBrand" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/img/others/save-disk.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="84.0" layoutY="5.0" prefHeight="46.0" prefWidth="54.0" style="-fx-background-color: #009999;" text=" ">
+                     <graphic>
+                        <ImageView fx:id="iSaveBrand" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/img/others/add-report.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="6.0" prefHeight="46.0" prefWidth="54.0" style="-fx-background-color: #009999;" text=" ">
+                     <graphic>
+                        <ImageView fx:id="iEditBrand" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/img/others/remove-report.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Label layoutX="22.0" layoutY="143.0" text="Name">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtNameBrand" focusColor="#4d4d4d" layoutX="74.0" layoutY="128.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009999" />
+            <Pane layoutX="15.0" layoutY="187.0" prefHeight="57.0" prefWidth="442.0" style="-fx-background-color: #f3f3f3;">
+               <children>
+                  <Label layoutX="37.0" layoutY="20.0" text="Search by Name">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Label>
+                  <JFXTextField fx:id="txtSearchBrand" focusColor="#4d4d4d" layoutX="154.0" layoutY="6.0" prefHeight="31.0" prefWidth="212.0" unFocusColor="#009999" />
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="378.0" layoutY="12.0" prefHeight="33.0" prefWidth="42.0" style="-fx-background-color: #009999;" text=" ">
+                     <graphic>
+                        <ImageView fx:id="iSearchBrand" fitHeight="25.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/img/others/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <Pane layoutX="15.0" layoutY="509.0" prefHeight="43.0" prefWidth="442.0" style="-fx-background-color: #f3f3f3;">
+               <children>
+                  <JFXProgressBar layoutY="20.0" prefHeight="4.0" prefWidth="442.0" />
+               </children>
+            </Pane>
+            <Label layoutX="110.0" layoutY="473.0" text="Double click on a team to select it">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font></Label>
+            <TableView fx:id="tblBrand" layoutX="15.0" layoutY="261.0" onMouseClicked="#onSelectBrand" prefHeight="200.0" prefWidth="442.0" style="-fx-border-color: #009999;">
+               <columns>
+                  <TableColumn fx:id="tblcNameBrand" prefWidth="220.0" text="Name" />
+                  <TableColumn fx:id="tblcCountryBrand" prefWidth="220.0" text="Country" />
+               </columns>
+            </TableView>
+            <Label layoutX="244.0" layoutY="143.0" text="Country">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtCountryBrand" focusColor="#4d4d4d" layoutX="307.0" layoutY="128.0" prefHeight="31.0" prefWidth="135.0" unFocusColor="#009999" />
+         </children>
+      </Pane>
+   </children>
+</StackPane>

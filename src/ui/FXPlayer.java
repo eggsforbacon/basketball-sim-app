@@ -8,6 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import model.objects.Fiba;
 
 public class FXPlayer implements Initializable {
@@ -15,8 +19,13 @@ public class FXPlayer implements Initializable {
     private static final long serialVersionUID = 1;
     private Fiba fb;
     private FXController xGUI;
+    private String imagePath;
     @FXML
-    private ImageView iAdd;
+    private StackPane stackPane;
+    @FXML
+    private Pane pane;
+    @FXML
+    private ImageView iPhoto;
     @FXML
     private ImageView iSave;
     @FXML
@@ -27,62 +36,12 @@ public class FXPlayer implements Initializable {
     private ImageView iSearch;
     @FXML
     private ImageView iPicture;
+    @FXML
+    private ImageView iTeam;
 
     public FXPlayer(Fiba fb, FXController xGUI) {
         this.fb = fb;
         this.xGUI = xGUI;
-    }
-
-    /*
-    public void changeTextFieldsSelecteds(Car carSelected) {
-        txtCodeV.setText(carSelected.getCodeV() + "");
-        if (carSelected.getBrand() != null) {
-            cbBrandV.setValue(carSelected.getBrand().getNameP());
-        } else {
-            cbBrandV.setValue(null);
-        }
-        if (carSelected.getTypeV() != null) {
-            cbTypeV.setValue(carSelected.getTypeV().getNameQ());
-        } else {
-            cbTypeV.setValue(null);
-        }
-        txtPlateV.setText(carSelected.getPlate());
-        txtModelV.setText(carSelected.getModel());
-        txtColorV.setText(carSelected.getColor());
-        txtYearV.setText(carSelected.getYear() + "");
-        txtPriceV.setText(carSelected.getPriceXDay() + "");
-        iPhotoV.setImage(stringToImage(carSelected.getPhoto()));
-        if (carSelected.isDispV()) {
-            rbDispVY.setSelected(true);
-            rbDispVN.setSelected(false);
-        } else {
-            rbDispVN.setSelected(true);
-            rbDispVY.setSelected(false);
-        }
-    }
-     */
-    @FXML
-    public void onNext(ActionEvent event) {
-        /*
-        try {
-            changeTextFieldsSelecteds(fb.findVehicletoShowNext(positionCar));
-            positionCar++;
-        } catch (NullPointerException e) {
-            xGUI.showAlert(false, "No hay vehiculos para mostrar", stackPane);
-        }
-         */
-    }
-
-    @FXML
-    public void onPrev(ActionEvent event) {
-        /*
-        try {
-            changeTextFieldsSelecteds(fb.findVehicletoShowPrev(Math.abs(amountCar)));
-            amountCar--;
-        } catch (NullPointerException e) {
-            xGUI.showAlert(false, "No hay vehiculos para mostrar", stackPane);
-        }
-         */
     }
 
     @Override
@@ -91,11 +50,52 @@ public class FXPlayer implements Initializable {
     }
 
     public void setImages() {
-        iAdd.setImage(new Image(new File("resources/img/others/add-file.png").toURI().toString()));
         iSave.setImage(new Image(new File("resources/img/others/save-disk.png").toURI().toString()));
         iEdit.setImage(new Image(new File("resources/img/others/add-report.png").toURI().toString()));
         iRemove.setImage(new Image(new File("resources/img/others/remove-report.png").toURI().toString()));
         iSearch.setImage(new Image(new File("resources/img/others/search.png").toURI().toString()));
         iPicture.setImage(new Image(new File("resources/img/others/picture.png").toURI().toString()));
+        iTeam.setImage(new Image(new File("resources/img/others/teams.png").toURI().toString()));
+    }
+
+    @FXML
+    public void onSelectImage(ActionEvent event) {
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Select a picture");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+
+            Stage stage = (Stage) pane.getScene().getWindow();
+            File iconImage = fileChooser.showOpenDialog(stage);
+
+            if (iconImage != null) {
+                imagePath = iconImage.getAbsolutePath();
+                iPhoto.setImage(stringToImage(imagePath));
+            } else {
+                xGUI.showAlert(false, "Por favor seleeciona una imagen", stackPane);
+            }
+        } catch (NullPointerException e) {
+            xGUI.showAlert(false, "Imagen no encontrada, por favor selecciona una imagen", stackPane);
+        }
+    }
+
+    public Image stringToImage(String image) {
+        try {
+            File f = new File(image);
+            Image imP = new Image(f.toURI().toString());
+            return imP;
+        } catch (NullPointerException e) {
+        }
+        return null;
+    }
+
+    @FXML
+    public void onSearchPlayer() {
+
+    }
+
+    @FXML
+    public void onTeamDisplay() {
+
     }
 }
