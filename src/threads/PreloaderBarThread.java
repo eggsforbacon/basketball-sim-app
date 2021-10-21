@@ -3,6 +3,7 @@ package threads;
 import javafx.application.Platform;
 import model.objects.Fiba;
 import model.objects.PreloaderBar;
+import ui.FXController;
 import ui.FXSplash;
 
 public class PreloaderBarThread extends Thread {
@@ -11,15 +12,16 @@ public class PreloaderBarThread extends Thread {
     FXSplash preloader;
     Fiba fb;
 
-    public PreloaderBarThread(Fiba fb, FXSplash preloader, PreloaderBar bar) {
+    public PreloaderBarThread(FXSplash preloader, PreloaderBar bar, Fiba fb) {
         this.preloader = preloader;
-        this.fb = fb;
         this.bar = bar;
+        this.fb = fb;
+
     }
 
     @Override
     public void run() {
-        new Load(fb).start();
+        new Load(preloader).start();
         pause(1000);
         int LOADING_TIME_INTERVAL = 10;
         while (bar.isActive()) {

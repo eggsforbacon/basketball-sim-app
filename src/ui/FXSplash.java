@@ -32,19 +32,18 @@ public class FXSplash implements Initializable {
     private Stage preloaderStage;
     private Scene scene;
 
-    private static final int COUNT_LIMIT = 30000;
+    private static final int COUNT_LIMIT = 3000;
 
     public FXSplash(Fiba fb) {
-        this.fb = fb;
+        this.fb = null;
         bar = new PreloaderBar();
         isLoaded = false;
-        xMenu = new FXController(fb);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         bar.setActive(true);
-        new PreloaderBarThread(fb, this, bar).start();
+        new PreloaderBarThread(this, bar, fb).start();
         iLogo.setImage(new Image(new File("resources/img/logo/logo_small.png").toURI().toString()));
     }
 
@@ -58,6 +57,7 @@ public class FXSplash implements Initializable {
         ((Stage) pBarRCT.getScene().getWindow()).close();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Menu.fxml"));
+            xMenu = new FXController(fb);
             fxmlLoader.setController(xMenu);
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
@@ -74,5 +74,13 @@ public class FXSplash implements Initializable {
 
     public FXController getxMenu() {
         return xMenu;
+    }
+
+    public void setFb(Fiba fb) {
+        this.fb = fb;
+    }
+
+    public void setxMenu(FXController xMenu) {
+        this.xMenu = xMenu;
     }
 }

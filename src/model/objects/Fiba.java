@@ -25,8 +25,7 @@ public class Fiba implements Serializable {
     public File fileChooser() {
         FileChooser fc = new FileChooser();
         fc.setTitle("Open File Client");
-        File file = fc.showOpenDialog(null);
-        return file;
+        return fc.showOpenDialog(null);
     }
 
     public boolean importData() {
@@ -59,4 +58,16 @@ public class Fiba implements Serializable {
     public void setPlayers(DefaultHashTable<String, Player> players) {
         this.players = players;
     }
+
+    public void addPlayer(Player newPlayer) throws Exception {
+        players.insert(newPlayer.getName(), newPlayer);
+
+    }
+
+    public void addTeam(Team newTeam) throws Exception {
+        teams.insert(newTeam.getName(), newTeam);
+
+    }
+
+
 }

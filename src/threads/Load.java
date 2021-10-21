@@ -1,31 +1,52 @@
 package threads;
 
+import javafx.application.Platform;
 import model.objects.Fiba;
+import ui.FXController;
+import ui.FXSplash;
+
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class Load extends Thread{
 
-    private Fiba fb;
     private boolean loader;
-    private final String SAVE_PATH_FILE = "data/Data.das";
+    private final String SAVE_PATH_FILE = "data/persistent/Data.das";
+    private FXSplash fxSplash;
+    private ObjectInputStream ois;
 
-    public Load(Fiba fb) {
-        this.fb = fb;
+    public Load(FXSplash splash) {
+        this.fxSplash = splash;
     }
 
     @Override
     public void run() {
         //hilo run
+
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(SAVE_PATH_FILE));
-            setFb((Fiba) ois.readObject());
+
+            Fiba fb  = read();
+            Platform.runLater(new Thread(() -> {
+
+                //fxSplash.setxMenu(new FXController(fb));
+                fxSplash.setFb(fb);
+
+
+            }));
             ois.close();
-        } catch (Exception e) {
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("pene");
+            e.printStackTrace();
         }
+
+
     }
 
-    public void setFb(Fiba fb) {
-        this.fb = fb;
+    public Fiba read() throws IOException, ClassNotFoundException {
+        ois = new ObjectInputStream(new FileInputStream(SAVE_PATH_FILE));
+        return  (Fiba) ois.readObject();
     }
+
 }

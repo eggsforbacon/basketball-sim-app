@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 
 public class Main {
 
-    private static final String SAVE_PATH_FILE = "data/Data.das";
+    private static final String SAVE_PATH_FILE = "data/persistent/Data.das";
     private static DefaultHashTable<String, Team> teams;
     private static DefaultHashTable<String, Player> players;
 

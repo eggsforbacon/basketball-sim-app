@@ -52,7 +52,9 @@ public class FXController implements Serializable, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         setImages();
+
     }
 
     public void setImages() {
@@ -130,4 +132,6 @@ public class FXController implements Serializable, Initializable {
         showAlert(imported, msg, stackPane);
         saveData();
     }
+
+
 }
