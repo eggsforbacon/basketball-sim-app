@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackPane1" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="853.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -27,15 +27,15 @@
             <Pane layoutX="10.0" layoutY="49.0" prefHeight="57.0" prefWidth="833.0" style="-fx-background-color: #f4efef;">
                <children>
                   <Label layoutX="14.0" layoutY="18.0" prefHeight="21.0" prefWidth="125.0" text="Search by Name" />
-                  <JFXTextField fx:id="txtSearchPlateV" focusColor="#4d4d4d" layoutX="144.0" layoutY="13.0" prefHeight="31.0" prefWidth="483.0" unFocusColor="#009999" />
-                  <JFXButton layoutX="699.0" layoutY="13.0" onAction="#onShowAllV" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #009999;" text="List All" textAlignment="CENTER" textFill="WHITE">
+                  <JFXTextField fx:id="txtSearchName" focusColor="#4d4d4d" layoutX="144.0" layoutY="13.0" prefHeight="31.0" prefWidth="483.0" unFocusColor="#009999" />
+                  <JFXButton layoutX="699.0" layoutY="13.0" onAction="#onShowAll" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #009999;" text="List All" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </JFXButton>
                   <JFXButton contentDisplay="CENTER" layoutX="639.0" layoutY="14.0" prefHeight="29.0" prefWidth="37.0" style="-fx-background-color: #009999;" text=" " textAlignment="CENTER">
                      <graphic>
-                        <ImageView fx:id="iSearchInListVehicle" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="iSearch" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../resources/img/others/search.png" />
                            </image>
@@ -49,13 +49,13 @@
                   <Label layoutX="14.0" layoutY="11.0" text="Double click on a player to select it" />
                </children>
             </Pane>
-            <TableView fx:id="tblVehicle" layoutX="10.0" layoutY="123.0" onMouseClicked="#onSelecteVehicle" prefHeight="271.0" prefWidth="833.0" style="-fx-border-color: #009999;">
+            <TableView fx:id="tblVehicle" layoutX="10.0" layoutY="123.0" onMouseClicked="#onSelectPlayer" prefHeight="271.0" prefWidth="833.0" style="-fx-border-color: #009999;">
                <columns>
-                  <TableColumn fx:id="tblcCodeV" prefWidth="250.0" text="Name" />
-                  <TableColumn fx:id="tblcPlateV" minWidth="0.0" prefWidth="145.0" text="Team" />
-                  <TableColumn fx:id="tblcTypeV" prefWidth="145.0" text="Number" />
-                  <TableColumn fx:id="tblcModelV" prefWidth="145.0" text="Is Active" />
-                  <TableColumn fx:id="tblcBrandV" prefWidth="145.0" text="Points" />
+                  <TableColumn fx:id="tcName" prefWidth="250.0" text="Name" />
+                  <TableColumn fx:id="tcTeam" minWidth="0.0" prefWidth="145.0" text="Team" />
+                  <TableColumn fx:id="tcNumber" prefWidth="145.0" text="Number" />
+                  <TableColumn fx:id="tcActive" prefWidth="145.0" text="Is Active" />
+                  <TableColumn fx:id="tcPoints" prefWidth="145.0" text="Points" />
                </columns>
             </TableView>
          </children>

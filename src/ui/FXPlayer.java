@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -90,12 +91,12 @@ public class FXPlayer implements Initializable {
     }
 
     @FXML
-    public void onSearchPlayer() {
-
+    public void onSearchPlayer() throws IOException {
+        xGUI.openListPlayers();
     }
 
     @FXML
-    public void onTeamDisplay() {
-
+    public void onTeamDisplay() throws IOException {
+        xGUI.openTeam();
     }
 }

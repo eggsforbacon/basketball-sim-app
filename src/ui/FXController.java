@@ -40,10 +40,14 @@ public class FXController implements Serializable, Initializable {
     @SuppressWarnings("FieldMayBeFinal")
     private Fiba fb;
     private FXPlayer xPlayer;
+    private FXListPlayers xListPlayer;
+    private FXTeam xTeam;
 
     public FXController(Fiba fb) {
         this.fb = fb;
         xPlayer = new FXPlayer(this.fb, this);
+        xListPlayer = new FXListPlayers(this.fb, this);
+        xTeam = new FXTeam(this.fb, this);
     }
 
     @Override
@@ -76,6 +80,20 @@ public class FXController implements Serializable, Initializable {
         newStage.getIcons().add(new Image(new File("resources/img/logo/logo_small_icon_only.png").toURI().toString()));
         newStage.setResizable(false);
         newStage.show();
+    }
+
+    public void openListPlayers() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/ListPlayers.fxml"));
+        fxmlLoader.setController(xListPlayer);
+        Parent root = fxmlLoader.load();
+        newStage(root);
+    }
+
+    public void openTeam() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Team.fxml"));
+        fxmlLoader.setController(xTeam);
+        Parent root = fxmlLoader.load();
+        newStage(root);
     }
 
     public void showAlert(boolean success, String msg, StackPane stackPane) {
