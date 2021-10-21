@@ -57,8 +57,7 @@ public class FXSplash implements Initializable {
         ((Stage) pBarRCT.getScene().getWindow()).close();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Menu.fxml"));
-            xMenu = new FXController(fb);
-            fxmlLoader.setController(xMenu);
+            fxmlLoader.setController(new FXController(fb));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();

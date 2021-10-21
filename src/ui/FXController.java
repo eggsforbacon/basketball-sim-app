@@ -127,7 +127,7 @@ public class FXController implements Serializable, Initializable {
 
     @FXML
     public void onImport(ActionEvent event) throws IOException {
-        boolean imported = fb.importData();
+        boolean imported = fb.importData(fb);
         String msg = (imported) ? "Yei" : "Oh no";
         showAlert(imported, msg, stackPane);
         saveData();

@@ -22,26 +22,15 @@ public class Load extends Thread{
 
     @Override
     public void run() {
-        //hilo run
-
         try {
 
             Fiba fb  = read();
-            Platform.runLater(new Thread(() -> {
-
-                //fxSplash.setxMenu(new FXController(fb));
-                fxSplash.setFb(fb);
-
-
-            }));
+            Platform.runLater(new Thread(() -> fxSplash.setFb(fb)));
             ois.close();
 
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("pene");
             e.printStackTrace();
         }
-
-
     }
 
     public Fiba read() throws IOException, ClassNotFoundException {

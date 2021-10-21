@@ -6,14 +6,17 @@ import java.io.FileReader;
 import model.data_structures.DefaultHashTable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import javafx.stage.FileChooser;
+import threads.FileUpload;
 
 public class Fiba implements Serializable {
 
-    private DefaultHashTable<String, Team> teams;
+    private ArrayList<Team> teams;
     private DefaultHashTable<String, Player> players;
 
-    public Fiba(DefaultHashTable<String, Team> teams, DefaultHashTable<String, Player> players) {
+    public Fiba(ArrayList<Team> teams, DefaultHashTable<String, Player> players) {
         this.teams = teams;
         this.players = players;
     }
@@ -28,14 +31,10 @@ public class Fiba implements Serializable {
         return fc.showOpenDialog(null);
     }
 
-    public boolean importData() {
+    public boolean importData(Fiba fb) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileChooser()));
-            String line = br.readLine();
-            line = br.readLine();
-            while (line != null) {
-                //TO DO
-            }
+            new FileUpload(br, fb).start();
             br.close();
             return true;
         } catch (Exception e) {
@@ -43,11 +42,11 @@ public class Fiba implements Serializable {
         }
     }
 
-    public DefaultHashTable<String, Team> getTeams() {
+    public ArrayList<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(DefaultHashTable<String, Team> teams) {
+    public void setTeams(ArrayList<Team> teams) {
         this.teams = teams;
     }
 
@@ -65,7 +64,7 @@ public class Fiba implements Serializable {
     }
 
     public void addTeam(Team newTeam) throws Exception {
-        teams.insert(newTeam.getName(), newTeam);
+        teams.add(newTeam);
 
     }
 

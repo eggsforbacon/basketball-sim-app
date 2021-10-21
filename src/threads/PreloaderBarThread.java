@@ -8,9 +8,9 @@ import ui.FXSplash;
 
 public class PreloaderBarThread extends Thread {
 
-    PreloaderBar bar;
-    FXSplash preloader;
-    Fiba fb;
+    private PreloaderBar bar;
+    private FXSplash preloader;
+    private Fiba fb;
 
     public PreloaderBarThread(FXSplash preloader, PreloaderBar bar, Fiba fb) {
         this.preloader = preloader;
@@ -21,7 +21,8 @@ public class PreloaderBarThread extends Thread {
 
     @Override
     public void run() {
-        new Load(preloader).start();
+        Load load = new Load(preloader);
+        load.start();
         pause(1000);
         int LOADING_TIME_INTERVAL = 10;
         while (bar.isActive()) {
@@ -36,19 +37,20 @@ public class PreloaderBarThread extends Thread {
                 }));
                 pause(LOADING_TIME_INTERVAL);
                 double percentage = (bar.getBarWidth() / bar.LOADED_WIDTH) * 100;
+
                 if (percentage >= 75.00 && percentage < 85.00) {
                     pause(100);
                 }
 
-                if (percentage >= 95.00 && percentage < 95.10 /*&& !PreloaderThread.isLoaded()*/) {
-                    //Wait Here (?
+                if (percentage >= 95.00 && load.isAlive()) {
+                    pause(2000);
                 }
             }
 
         }
+
         Platform.runLater(new Thread(() -> preloader.postLoaded()));
 
-        Platform.runLater(new Thread(() -> preloader.getxMenu().setFb(fb)));
     }
 
     private void pause(int millis) {
