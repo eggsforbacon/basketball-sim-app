@@ -16,7 +16,7 @@ public class Player implements Serializable {
 
     //Calculated Stats
 
-    private int points;
+    private double points;
     private double turnoverPercentage;
     private double usagePercentage;
     private double assistPercentage;
@@ -28,11 +28,11 @@ public class Player implements Serializable {
         this.name = name;
     }
 
-    public Player(String name, int age, int number, String position, boolean active,
-                  int points, double turnoverPercentage, double usagePercentage, double assistPercentage,
+    public Player(String name, int number, String position, boolean active,
+                  double points, double turnoverPercentage, double usagePercentage, double assistPercentage,
                   double reboundPercentage, double defensiveBPM, double offensiveBPM, String teamName, String teamCountry ) {
         this.name = name;
-        this.age = age;
+//        this.age = age;
         this.number = number;
         this.position = position;
         this.active = active;
@@ -105,7 +105,7 @@ public class Player implements Serializable {
         this.active = active;
     }
 
-    public int getPoints() {
+    public double getPoints() {
         return points;
     }
 

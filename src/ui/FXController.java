@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import model.objects.Fiba;
+import threads.FileUpload;
 
 public class FXController implements Serializable, Initializable {
 

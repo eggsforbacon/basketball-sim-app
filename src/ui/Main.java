@@ -17,11 +17,8 @@ public class Main {
     private static DefaultHashTable<String, Player> players;
 
     public static void main(String[] args) throws Exception {
-        players = new DefaultHashTable<>(2);
+        players = new DefaultHashTable<>(200000);
         teams = new ArrayList<>(2);
-
-        players.insert("Lebron", new Player("Lebron"));
-        teams.add(new Team("Pene"));
 
         Fiba fs = new Fiba(teams, players);
 

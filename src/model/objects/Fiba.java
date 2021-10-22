@@ -35,7 +35,6 @@ public class Fiba implements Serializable {
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileChooser()));
             new FileUpload(br, fb).start();
-            br.close();
             return true;
         } catch (Exception e) {
             return false;

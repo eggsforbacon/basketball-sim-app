@@ -53,7 +53,7 @@ public class DefaultHashTable<K, V> implements HashTable<K, V>, Serializable {
     public int insert(K key, V value) throws Exception {
         int i = 0;
         do {
-            int j = hash(key, i);
+            int j = Math.abs(hash(key, i));
             if (table[j] == null) {
                 table[j] = new HashNode<>(key, value);
                 size++;
