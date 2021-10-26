@@ -3,25 +3,23 @@ package model.objects;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import model.data_structures.DefaultHashTable;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import javafx.stage.FileChooser;
+import model.data_structures.BST;
+import model.data_structures.RedBlackTree;
 import threads.FileUpload;
 
 public class Fiba implements Serializable {
 
     private ArrayList<Team> teams;
-    private DefaultHashTable<String, Player> players;
-
-    public Fiba(ArrayList<Team> teams, DefaultHashTable<String, Player> players) {
-        this.teams = teams;
-        this.players = players;
-    }
+    private RedBlackTree<String, Player> redBlackTreePlayers;
+    private BST<String, Player> BSTPlayers;
 
     public Fiba() {
+        this.teams = new ArrayList<>();
+        this.redBlackTreePlayers = new RedBlackTree<>();
+        this.BSTPlayers = new BST<>();
 
     }
 
@@ -49,16 +47,24 @@ public class Fiba implements Serializable {
         this.teams = teams;
     }
 
-    public DefaultHashTable<String, Player> getPlayers() {
-        return players;
+    public RedBlackTree<String, Player> getRedBlackTreePlayers() {
+        return redBlackTreePlayers;
     }
 
-    public void setPlayers(DefaultHashTable<String, Player> players) {
-        this.players = players;
+    public void setRedBlackTreePlayers(RedBlackTree<String, Player> redBlackTreePlayers) {
+        this.redBlackTreePlayers = redBlackTreePlayers;
+    }
+
+    public BST<String, Player> getBSTPlayers() {
+        return BSTPlayers;
+    }
+
+    public void setBSTPlayers(BST<String, Player> BSTPlayers) {
+        this.BSTPlayers = BSTPlayers;
     }
 
     public void addPlayer(Player newPlayer) throws Exception {
-        players.insert(newPlayer.getName(), newPlayer);
+        redBlackTreePlayers.add(newPlayer.getName(), newPlayer);
 
     }
 

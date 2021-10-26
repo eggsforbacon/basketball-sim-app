@@ -1,14 +1,14 @@
 package model.data_structures;
 
-import model.interfaces.IRBT;
+import java.io.Serializable;
 
-public class RedBlackTree<K extends Comparable<K>, V> implements IRBT<K, V> {
+public class RedBlackTree<K extends Comparable<K>, V> implements Serializable {
 
     private static final boolean RED = true;
     private static final boolean BLACK = false;
     private int size;
 
-    private class Node {
+    private class Node implements Serializable {
         public K key;
         public V value;
         public Node left, right;

@@ -2,28 +2,16 @@ package model.data_structures;
 
 import model.interfaces.IBST;
 
-class Node<K extends Comparable<K>, V> {
-    K key;
-    V value;
-    Node<K, V> parent;
-    Node<K, V> left, right;
+import java.io.Serializable;
 
-    public Node(K key, V value) {
-        this.key = key;
-        this.value = value;
-        parent = null;
-        left = null;
-        right = null;
-    }
-}
-
-
-public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>> {
+public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, Serializable {
 
     private Node<K, V> root;
+    private int size;
 
     public BST() {
         root = null;
+        size = 0;
     }
 
 
@@ -50,6 +38,8 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>> {
         if (trail == null) root = node;
         else if (node.key.compareTo(trail.key) < 0) trail.left = node;
         else trail.right = node;
+
+        size++;
 
     }
 
@@ -132,3 +122,20 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>> {
         return sb.toString();
     }
 }
+
+
+class Node<K extends Comparable<K>, V> implements Serializable{
+    K key;
+    V value;
+    Node<K, V> parent;
+    Node<K, V> left, right;
+
+    public Node(K key, V value) {
+        this.key = key;
+        this.value = value;
+        parent = null;
+        left = null;
+        right = null;
+    }
+}
+
