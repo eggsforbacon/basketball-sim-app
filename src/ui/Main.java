@@ -1,5 +1,6 @@
 package ui;
 
+import model.data_structures.BST;
 import model.data_structures.DefaultHashTable;
 import model.objects.Fiba;
 import model.objects.Player;
@@ -17,6 +18,10 @@ public class Main {
     private static DefaultHashTable<String, Player> players;
 
     public static void main(String[] args) throws Exception {
+        driver2();
+    }
+
+    public static void driver1() throws Exception {
         players = new DefaultHashTable<>(200000);
         teams = new ArrayList<>(2);
 
@@ -25,5 +30,18 @@ public class Main {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_FILE));
         oos.writeObject(fs);
         oos.close();
+
+    }
+
+    public static void driver2() {
+        BST<Integer, String> stringTree = new BST<>();
+
+        stringTree.insert(1, "Hello");
+        stringTree.insert(-1, "!!!");
+        stringTree.insert(3, "!!!");
+        stringTree.insert(2, "World");
+
+        System.out.println(stringTree.inorder());
+        System.out.println(stringTree.inorderVals());
     }
 }

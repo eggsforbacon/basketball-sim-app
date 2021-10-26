@@ -1,6 +1,8 @@
 package model.data_structures;
 
-public class RedBlackTree<K extends Comparable<K>, V> {
+import model.interfaces.IRBT;
+
+public class RedBlackTree<K extends Comparable<K>, V> implements IRBT<K, V> {
 
     private static final boolean RED = true;
     private static final boolean BLACK = false;
