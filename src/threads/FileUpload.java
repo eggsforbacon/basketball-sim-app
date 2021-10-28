@@ -1,7 +1,7 @@
 package threads;
 
 import model.data_structures.BST;
-import model.data_structures.RedBlackTree;
+import model.data_structures.RBT;
 import model.objects.Fiba;
 import model.objects.Player;
 
@@ -20,7 +20,7 @@ public class FileUpload extends Thread{
 
     @Override
     public void run() {
-        fb.setRedBlackTreePlayers(new RedBlackTree<>());
+        fb.setRedBlackTreePlayers(new RBT<>());
         fb.setBSTPlayers(new BST<>());
 
         int num = 1;

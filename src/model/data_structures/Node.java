@@ -55,4 +55,12 @@ public class Node<K extends Comparable<K>, V> implements Serializable {
     public void setRight(Node<K, V> right) {
         this.right = right;
     }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "key = " + key +
+                ", value = " + value +
+                '}';
+    }
 }

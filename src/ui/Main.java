@@ -1,7 +1,8 @@
 package ui;
 
 import model.data_structures.BST;
-import model.data_structures.RedBlackTree;
+import model.data_structures.Node;
+import model.data_structures.RBT;
 import model.objects.Fiba;
 import model.objects.Player;
 import model.objects.Team;
@@ -14,10 +15,10 @@ public class Main {
 
     private static final String SAVE_PATH_FILE = "data/persistent/Data.das";
     private static ArrayList<Team> teams;
-    private static RedBlackTree<String, Player> players;
+    private static RBT<String, Player> players;
 
     public static void main(String[] args) throws Exception {
-
+        driver5();
     }
 
     public static void driver1() throws Exception {
@@ -68,13 +69,29 @@ public class Main {
         dup1(tree);
     }
 
+    public static void driver5() {
+        BST<String, Integer> stringTree = new BST<>();
+        String[] strings = {"bag", "confine", "lush", "visitor", "spotted", "jam", "spotty", "curb", "rings", "purpose"};
+        for (int i = 0, stringsLength = strings.length; i < stringsLength; i++) {
+            String str = strings[i];
+            stringTree.insert(str, i);
+        }
+        System.out.println("Keys: " + stringTree.inorder() + "\nValues: " + stringTree.inorderVals());
+        Scanner in = new Scanner(System.in);
+        System.out.print("Search by key approx: ");
+        String query = in.nextLine();
+        ArrayList<Node<String, Integer>> results = stringTree.searchApproximate(stringTree.root(), query, new ArrayList<>());
+        System.out.println(results);
+        in.close();
+    }
+
     private static void dup1(BST<Integer, Integer> tree) {
         System.out.println("Keys: " + tree.inorder() + "\nValues: " + tree.inorderVals());
         Scanner in = new Scanner(System.in);
-        System.out.print("Pick a key to delete: ");
-        int key = Integer.parseInt(in.nextLine());
-        tree.delete(key);
-        System.out.println("New Keys: " + tree.inorder() + "\nNew Values: " + tree.inorderVals());
+        System.out.print("Search by key approx: ");
+        String query = in.nextLine();
+        ArrayList<Node<Integer, Integer>> results = tree.searchApproximate(tree.root(), query, new ArrayList<>());
+        System.out.println(results);
         in.close();
     }
 

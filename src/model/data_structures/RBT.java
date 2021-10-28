@@ -2,7 +2,7 @@ package model.data_structures;
 
 import java.io.Serializable;
 
-public class RedBlackTree<K extends Comparable<K>, V> implements Serializable {
+public class RBT<K extends Comparable<K>, V> implements Serializable {
 
     private static final boolean RED = true;
     private static final boolean BLACK = false;
@@ -25,7 +25,7 @@ public class RedBlackTree<K extends Comparable<K>, V> implements Serializable {
 
     private Node root;
 
-    public RedBlackTree() {
+    public RBT() {
         root = null;
         size = 0;
     }

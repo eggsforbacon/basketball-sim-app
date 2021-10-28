@@ -6,19 +6,23 @@ import java.io.FileReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.stage.FileChooser;
+import model.data_structures.AVL;
 import model.data_structures.BST;
-import model.data_structures.RedBlackTree;
+import model.data_structures.RBT;
 import threads.FileUpload;
 
 public class Fiba implements Serializable {
 
     private ArrayList<Team> teams;
-    private RedBlackTree<String, Player> redBlackTreePlayers;
+    private RBT<String, Player> RBTPlayers;
     private BST<String, Player> BSTPlayers;
+    private AVL<Double, Player> pointsAVL;
+    private AVL<Double, Player> turnoverAVL;
+//    private AVL<Double,
 
     public Fiba() {
         this.teams = new ArrayList<>();
-        this.redBlackTreePlayers = new RedBlackTree<>();
+        this.RBTPlayers = new RBT<>();
         this.BSTPlayers = new BST<>();
 
     }
@@ -47,12 +51,12 @@ public class Fiba implements Serializable {
         this.teams = teams;
     }
 
-    public RedBlackTree<String, Player> getRedBlackTreePlayers() {
-        return redBlackTreePlayers;
+    public RBT<String, Player> getRedBlackTreePlayers() {
+        return RBTPlayers;
     }
 
-    public void setRedBlackTreePlayers(RedBlackTree<String, Player> redBlackTreePlayers) {
-        this.redBlackTreePlayers = redBlackTreePlayers;
+    public void setRedBlackTreePlayers(RBT<String, Player> RBTPlayers) {
+        this.RBTPlayers = RBTPlayers;
     }
 
     public BST<String, Player> getBSTPlayers() {
@@ -64,7 +68,7 @@ public class Fiba implements Serializable {
     }
 
     public void addPlayer(Player newPlayer) throws Exception {
-        redBlackTreePlayers.add(newPlayer.getName(), newPlayer);
+        RBTPlayers.add(newPlayer.getName(), newPlayer);
 
     }
 

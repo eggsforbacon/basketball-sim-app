@@ -2,6 +2,7 @@ package model.data_structures;
 
 import model.interfaces.IBST;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, Serializable {
@@ -14,12 +15,23 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
         size = 0;
     }
 
-
     @Override
     public Node<K, V> search(Node<K, V> root, K key) {
         if (root == null || root.key().equals(key)) return root;
         else if (key.compareTo(root.key()) < 0) return search(root.left(), key);
         else return search(root.right(), key);
+    }
+
+    public ArrayList<Node<K, V>> searchApproximate(Node<K, V> node, String query, ArrayList<Node<K, V>> results) {
+        if (node == null) return results;
+        else if(node.key().toString().contains(query)) {
+            results = searchApproximate(node.left(), query, results);
+            results.add(node);
+            return searchApproximate(node.right(), query, results);
+        }
+        results = searchApproximate(node.left(), query, results);
+        results = searchApproximate(node.right(), query, results);
+        return results;
     }
 
     @Override
