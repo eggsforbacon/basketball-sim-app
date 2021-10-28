@@ -6,7 +6,7 @@ public interface IBST<K, V, T> {
 
     void insert(K key, V value);
 
-    void delete(T node);
+    void delete(K key);
 
     T min(T root);
 

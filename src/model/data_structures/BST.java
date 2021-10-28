@@ -1,8 +1,8 @@
 package model.data_structures;
 
 import model.interfaces.IBST;
-
 import java.io.Serializable;
+import java.util.NoSuchElementException;
 
 public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, Serializable {
 
@@ -17,10 +17,9 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     @Override
     public Node<K, V> search(Node<K, V> root, K key) {
-        if (root == null || root.key.equals(key)) {
-            return root;
-        }
-        return null;
+        if (root == null || root.key().equals(key)) return root;
+        else if (key.compareTo(root.key()) < 0) return search(root.left(), key);
+        else return search(root.right(), key);
     }
 
     @Override
@@ -30,22 +29,42 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
         Node<K, V> current = root;
         while (current != null) {
             trail = current;
-            if (node.key.compareTo(current.key) < 0) current = current.left;
-            else current = current.right;
-            node.parent = trail;
+            if (node.key().compareTo(current.key()) < 0) current = current.left();
+            else current = current.right();
+            node.setParent(trail);
 
         }
         if (trail == null) root = node;
-        else if (node.key.compareTo(trail.key) < 0) trail.left = node;
-        else trail.right = node;
+        else if (node.key().compareTo(trail.key()) < 0) trail.setLeft(node);
+        else trail.setRight(node);
 
         size++;
 
     }
 
     @Override
-    public void delete(Node<K, V> node) {
+    public void delete(K key) {
+        Node<K, V> found = search(root, key);
+        if (found == null) throw new NoSuchElementException("Element with key \"" + key + "\" not found in tree");
+        int leftRight = found.parent() != null ? key.compareTo(found.parent().key()) : 0;
+        if (found.left() == null && found.right() == null) {
+            System.out.println("Key " + key + " case 1");
+            if (leftRight < 0) found.parent().setLeft(null);
+            else found.parent().setRight(null);
+        } else if (found.left() != null && found.right() != null) {
+            System.out.println("Key " + key + " case 3");
+            Node<K, V> replacement = successor(found);
+            delete(replacement.key());
+            found.setKey(replacement.key());
+            found.setValue(replacement.value());
+        } else {
+            System.out.println("Key " + key + " case 2");
+            Node<K, V> child = found.left() != null ? found.left() : found.right();
+            if (leftRight < 0) found.parent().setLeft(child);
+            else found.parent().setRight(child);
+        }
 
+        size--;
     }
 
     public Node<K, V> min() {
@@ -54,7 +73,7 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     @Override
     public Node<K, V> min(Node<K, V> root) {
-        while (root.left != null) root = root.left;
+        while (root.left() != null) root = root.left();
         return root;
     }
 
@@ -64,34 +83,30 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     @Override
     public Node<K, V> max(Node<K, V> root) {
-        while (root.right != null) root = root.right;
+        while (root.right() != null) root = root.right();
         return root;
     }
 
     @Override
     public Node<K, V> successor(Node<K, V> node) {
-        if (node.right != null) return node.right;
-        Node<K, V> successor = node.parent;
-        while (successor != null && node == successor.right) {
+        if (node.right() != null) return min(node.right());
+        Node<K, V> successor = node.parent();
+        while (successor != null && node == successor.right()) {
             node = successor;
-            successor = successor.parent;
+            successor = successor.parent();
         }
         return successor;
     }
 
     @Override
     public Node<K, V> predecessor(Node<K, V> node) {
-        if (node.left != null) return node.left;
-        Node<K, V> successor = node.parent;
-        while (successor != null && node == successor.left) {
+        if (node.left() != null) return max(node.left());
+        Node<K, V> successor = node.parent();
+        while (successor != null && node == successor.left()) {
             node = successor;
-            successor = successor.parent;
+            successor = successor.parent();
         }
         return successor;
-    }
-
-    public Node<K, V> root() {
-        return root;
     }
 
     public String inorder() {
@@ -101,9 +116,9 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     private String inorderRec(Node<K, V> root, StringBuilder sb) {
         if (root != null) {
-            inorderRec(root.left, sb);
-            sb.append(root.key.toString()).append(" ");
-            inorderRec(root.right, sb);
+            inorderRec(root.left(), sb);
+            sb.append(root.key().toString()).append(" ");
+            inorderRec(root.right(), sb);
         }
         return sb.toString();
     }
@@ -115,27 +130,20 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     private String inorderRecVals(Node<K, V> root, StringBuilder sb) {
         if (root != null) {
-            inorderRec(root.left, sb);
-            sb.append(root.value.toString()).append(" ");
-            inorderRec(root.right, sb);
+            inorderRecVals(root.left(), sb);
+            sb.append(root.value().toString()).append(" ");
+            inorderRecVals(root.right(), sb);
         }
         return sb.toString();
     }
-}
 
+    public Node<K, V> root() {
+        return root;
+    }
 
-class Node<K extends Comparable<K>, V> implements Serializable{
-    K key;
-    V value;
-    Node<K, V> parent;
-    Node<K, V> left, right;
-
-    public Node(K key, V value) {
-        this.key = key;
-        this.value = value;
-        parent = null;
-        left = null;
-        right = null;
+    public int size() {
+        return size;
     }
 }
+
 
