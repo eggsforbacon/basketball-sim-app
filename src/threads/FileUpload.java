@@ -1,5 +1,6 @@
 package threads;
 
+import model.data_structures.AVL;
 import model.data_structures.BST;
 import model.data_structures.RBT;
 import model.objects.Fiba;
@@ -20,8 +21,15 @@ public class FileUpload extends Thread{
 
     @Override
     public void run() {
-        fb.setRedBlackTreePlayers(new RBT<>());
-        fb.setBSTPlayers(new BST<>());
+        fb.setAVLPlayersDefensiveBPM(new AVL<>());
+        fb.setAVLPlayersOffensiveBPM(new AVL<>());
+        fb.setAVLPlayersReboundPercentage(new AVL<>());
+        fb.setBSTPlayersName(new BST<>());
+        fb.setAVLPlayersTeamName(new AVL<>());
+        fb.setRBTFPlayersUsagePercentage(new RBT<>());
+        fb.setRBTPlayersAssistPercentage(new RBT<>());
+        fb.setRBTPlayersPoints(new RBT<>());
+        fb.setRBTPlayersTurnoverPercentage(new RBT<>());
 
         int num = 1;
         String line = "";
@@ -37,8 +45,15 @@ public class FileUpload extends Thread{
                             Double.parseDouble(arrayLine[7]), Double.parseDouble(arrayLine[8]), Double.parseDouble(arrayLine[9]),
                             Double.parseDouble(arrayLine[10]), Double.parseDouble(arrayLine[11]), arrayLine[12], arrayLine[13]);
 
-                    fb.getRedBlackTreePlayers().add(arrayLine[0], player);
-                    fb.getBSTPlayers().insert(arrayLine[0], player);
+                    fb.getAVLPlayersDefensiveBPM().insert(Double.parseDouble(arrayLine[10]), player);
+                    fb.getAVLPlayersOffensiveBPM().insert(Double.parseDouble(arrayLine[11]), player);
+                    fb.getBSTPlayersName().insert(arrayLine[0] + " " + arrayLine[1], player);
+                    fb.getAVLPlayersReboundPercentage().insert(Double.parseDouble(arrayLine[9]), player);
+                    fb.getAVLPlayersTeamName().insert(arrayLine[12], player);
+                    fb.getRBTFPlayersUsagePercentage().add(Double.parseDouble(arrayLine[7]), player);
+                    fb.getRBTPlayersAssistPercentage().add(Double.parseDouble(arrayLine[8]), player);
+                    fb.getRBTPlayersPoints().add(Double.parseDouble(arrayLine[5]), player);
+                    fb.getRBTPlayersTurnoverPercentage().add(Double.parseDouble(arrayLine[6]), player);
                     System.out.println(num);
                     num++;
 

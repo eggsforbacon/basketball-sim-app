@@ -18,7 +18,7 @@ public class Main {
     private static RBT<String, Player> players;
 
     public static void main(String[] args) throws Exception {
-        driver5();
+        driver1();
     }
 
     public static void driver1() throws Exception {

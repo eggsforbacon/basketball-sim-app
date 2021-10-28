@@ -14,16 +14,26 @@ import threads.FileUpload;
 public class Fiba implements Serializable {
 
     private ArrayList<Team> teams;
-    private RBT<String, Player> RBTPlayers;
-    private BST<String, Player> BSTPlayers;
-    private AVL<Double, Player> pointsAVL;
-    private AVL<Double, Player> turnoverAVL;
-//    private AVL<Double,
+    private BST<String, Player> BSTPlayersName;
+    private RBT<Double, Player> RBTPlayersPoints;
+    private RBT<Double, Player> RBTPlayersTurnoverPercentage;
+    private RBT<Double, Player> RBTFPlayersUsagePercentage;
+    private RBT<Double, Player> RBTPlayersAssistPercentage;
+    private AVL<Double, Player> AVLPlayersReboundPercentage;
+    private AVL<Double, Player> AVLPlayersDefensiveBPM;
+    private AVL<Double, Player> AVLPlayersOffensiveBPM;
+    private AVL<String, Player> AVLPlayersTeamName;
 
     public Fiba() {
-        this.teams = new ArrayList<>();
-        this.RBTPlayers = new RBT<>();
-        this.BSTPlayers = new BST<>();
+        BSTPlayersName = new BST<>();
+        RBTPlayersPoints = new RBT<>();
+        RBTPlayersTurnoverPercentage = new RBT<>();
+        RBTFPlayersUsagePercentage = new RBT<>();
+        RBTPlayersAssistPercentage = new RBT<>();
+        AVLPlayersReboundPercentage = new AVL<>();
+        AVLPlayersDefensiveBPM = new AVL<>();
+        AVLPlayersOffensiveBPM = new AVL<>();
+        AVLPlayersTeamName = new AVL<>();
 
     }
 
@@ -51,31 +61,75 @@ public class Fiba implements Serializable {
         this.teams = teams;
     }
 
-    public RBT<String, Player> getRedBlackTreePlayers() {
-        return RBTPlayers;
+    public BST<String, Player> getBSTPlayersName() {
+        return BSTPlayersName;
     }
 
-    public void setRedBlackTreePlayers(RBT<String, Player> RBTPlayers) {
-        this.RBTPlayers = RBTPlayers;
+    public void setBSTPlayersName(BST<String, Player> BSTPlayersName) {
+        this.BSTPlayersName = BSTPlayersName;
     }
 
-    public BST<String, Player> getBSTPlayers() {
-        return BSTPlayers;
+    public RBT<Double, Player> getRBTPlayersPoints() {
+        return RBTPlayersPoints;
     }
 
-    public void setBSTPlayers(BST<String, Player> BSTPlayers) {
-        this.BSTPlayers = BSTPlayers;
+    public void setRBTPlayersPoints(RBT<Double, Player> RBTPlayersPoints) {
+        this.RBTPlayersPoints = RBTPlayersPoints;
     }
 
-    public void addPlayer(Player newPlayer) throws Exception {
-        RBTPlayers.add(newPlayer.getName(), newPlayer);
-
+    public RBT<Double, Player> getRBTPlayersTurnoverPercentage() {
+        return RBTPlayersTurnoverPercentage;
     }
 
-    public void addTeam(Team newTeam) throws Exception {
-        teams.add(newTeam);
-
+    public void setRBTPlayersTurnoverPercentage(RBT<Double, Player> RBTPlayersTurnoverPercentage) {
+        this.RBTPlayersTurnoverPercentage = RBTPlayersTurnoverPercentage;
     }
 
+    public RBT<Double, Player> getRBTFPlayersUsagePercentage() {
+        return RBTFPlayersUsagePercentage;
+    }
 
+    public void setRBTFPlayersUsagePercentage(RBT<Double, Player> RBTFPlayersUsagePercentage) {
+        this.RBTFPlayersUsagePercentage = RBTFPlayersUsagePercentage;
+    }
+
+    public RBT<Double, Player> getRBTPlayersAssistPercentage() {
+        return RBTPlayersAssistPercentage;
+    }
+
+    public void setRBTPlayersAssistPercentage(RBT<Double, Player> RBTPlayersAssistPercentage) {
+        this.RBTPlayersAssistPercentage = RBTPlayersAssistPercentage;
+    }
+
+    public AVL<Double, Player> getAVLPlayersReboundPercentage() {
+        return AVLPlayersReboundPercentage;
+    }
+
+    public void setAVLPlayersReboundPercentage(AVL<Double, Player> AVLPlayersReboundPercentage) {
+        this.AVLPlayersReboundPercentage = AVLPlayersReboundPercentage;
+    }
+
+    public AVL<Double, Player> getAVLPlayersDefensiveBPM() {
+        return AVLPlayersDefensiveBPM;
+    }
+
+    public void setAVLPlayersDefensiveBPM(AVL<Double, Player> AVLPlayersDefensiveBPM) {
+        this.AVLPlayersDefensiveBPM = AVLPlayersDefensiveBPM;
+    }
+
+    public AVL<Double, Player> getAVLPlayersOffensiveBPM() {
+        return AVLPlayersOffensiveBPM;
+    }
+
+    public void setAVLPlayersOffensiveBPM(AVL<Double, Player> AVLPlayersOffensiveBPM) {
+        this.AVLPlayersOffensiveBPM = AVLPlayersOffensiveBPM;
+    }
+
+    public AVL<String, Player> getAVLPlayersTeamName() {
+        return AVLPlayersTeamName;
+    }
+
+    public void setAVLPlayersTeamName(AVL<String, Player> AVLPlayersTeamName) {
+        this.AVLPlayersTeamName = AVLPlayersTeamName;
+    }
 }
