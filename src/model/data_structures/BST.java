@@ -153,6 +153,10 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
         return root;
     }
 
+    public void setRoot(Node<K, V> root) {
+        this.root = root;
+    }
+
     public int size() {
         return size;
     }

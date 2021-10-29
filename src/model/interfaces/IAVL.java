@@ -1,5 +1,7 @@
 package model.interfaces;
 
+import java.util.ArrayList;
+
 public interface IAVL<K, V, T> extends IBST<K, V, T> {
 
     int height(T node);
@@ -8,5 +10,7 @@ public interface IAVL<K, V, T> extends IBST<K, V, T> {
 
     void rotateLeft(T node);
 
-    boolean isBalanced(T node);
+    int balance(T node);
+
+    void balanceAgain(T node, ArrayList<T> path);
 }
