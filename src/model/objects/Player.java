@@ -30,7 +30,7 @@ public class Player implements Serializable {
 
     public Player(String name, int number, String position, boolean active,
                   double points, double turnoverPercentage, double usagePercentage, double assistPercentage,
-                  double reboundPercentage, double defensiveBPM, double offensiveBPM, String teamName, String teamCountry ) {
+                  double reboundPercentage, double defensiveBPM, double offensiveBPM, Team team ) {
         this.name = name;
 //        this.age = age;
         this.number = number;
@@ -43,7 +43,7 @@ public class Player implements Serializable {
         this.reboundPercentage = reboundPercentage;
         this.defensiveBPM = defensiveBPM;
         this.offensiveBPM = offensiveBPM;
-        team = new Team(teamName, teamCountry);
+        this.team = team;
     }
 
     // Setters and Getters
