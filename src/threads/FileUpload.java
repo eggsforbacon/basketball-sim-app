@@ -50,10 +50,12 @@ public class FileUpload extends Thread{
                     fb.getBSTPlayersName().insert(arrayLine[0] + " " + arrayLine[1], player);
                     fb.getAVLPlayersReboundPercentage().insert(Double.parseDouble(arrayLine[9]), player);
                     fb.getAVLPlayersTeamName().insert(arrayLine[12], player);
-                    fb.getRBTFPlayersUsagePercentage().add(Double.parseDouble(arrayLine[7]), player);
-                    fb.getRBTPlayersAssistPercentage().add(Double.parseDouble(arrayLine[8]), player);
-                    fb.getRBTPlayersPoints().add(Double.parseDouble(arrayLine[5]), player);
-                    fb.getRBTPlayersTurnoverPercentage().add(Double.parseDouble(arrayLine[6]), player);
+                    fb.getRBTFPlayersUsagePercentage().insert(Double.parseDouble(arrayLine[7]), player);
+                    fb.getRBTPlayersAssistPercentage().insert(Double.parseDouble(arrayLine[8]), player);
+                    fb.getRBTPlayersPoints().insert(Double.parseDouble(arrayLine[5]), player);
+                    fb.getRBTPlayersTurnoverPercentage().insert(Double.parseDouble(arrayLine[6]), player);
+
+
                     System.out.println(num);
                     num++;
 

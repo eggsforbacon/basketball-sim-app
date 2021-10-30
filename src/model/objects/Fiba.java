@@ -132,4 +132,22 @@ public class Fiba implements Serializable {
     public void setAVLPlayersTeamName(AVL<String, Player> AVLPlayersTeamName) {
         this.AVLPlayersTeamName = AVLPlayersTeamName;
     }
+
+    public void addPlayer(Player player) {
+        getAVLPlayersDefensiveBPM().insert(player.getDefensiveBPM(), player);
+        getAVLPlayersOffensiveBPM().insert(player.getOffensiveBPM(), player);
+        getBSTPlayersName().insert(player.getName(), player);
+        getAVLPlayersReboundPercentage().insert(player.getReboundPercentage(), player);
+        getAVLPlayersTeamName().insert(player.getTeam().getName(), player);
+        getRBTFPlayersUsagePercentage().insert(player.getUsagePercentage(), player);
+        getRBTPlayersAssistPercentage().insert(player.getAssistPercentage(), player);
+        getRBTPlayersPoints().insert(player.getPoints(), player);
+        getRBTPlayersTurnoverPercentage().insert(player.getTurnoverPercentage(), player);
+
+    }
+
+    public void addTeam(Team team) {
+        teams.add(team);
+
+    }
 }

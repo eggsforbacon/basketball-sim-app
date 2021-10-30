@@ -48,7 +48,6 @@ public class Player implements Serializable {
 
     // Setters and Getters
 
-
     public String getName() {
         return name;
     }
@@ -109,8 +108,40 @@ public class Player implements Serializable {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(double points) {
         this.points = points;
+    }
+
+    public double getTurnoverPercentage() {
+        return turnoverPercentage;
+    }
+
+    public void setTurnoverPercentage(double turnoverPercentage) {
+        this.turnoverPercentage = turnoverPercentage;
+    }
+
+    public double getUsagePercentage() {
+        return usagePercentage;
+    }
+
+    public void setUsagePercentage(double usagePercentage) {
+        this.usagePercentage = usagePercentage;
+    }
+
+    public double getAssistPercentage() {
+        return assistPercentage;
+    }
+
+    public void setAssistPercentage(double assistPercentage) {
+        this.assistPercentage = assistPercentage;
+    }
+
+    public double getReboundPercentage() {
+        return reboundPercentage;
+    }
+
+    public void setReboundPercentage(double reboundPercentage) {
+        this.reboundPercentage = reboundPercentage;
     }
 
     public double getDefensiveBPM() {

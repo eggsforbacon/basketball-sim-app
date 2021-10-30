@@ -88,14 +88,14 @@ public class RBT<K extends Comparable<K>, V> implements Serializable {
     }
 
     // Agrega un nuevo elemento (clave, valor) al árbol
-    public void add(K key, V value) {
-        root = add(root, key, value);
+    public void insert(K key, V value) {
+        root = insert(root, key, value);
         root.color = BLACK;// Mantenga el nodo raíz en negro después de agregar
     }
 
     // Insertar elementos (clave, valor) en el árbol rojo-negro enraizado en el nodo, algoritmo recursivo
     // Devuelve la raíz del árbol rojo-negro después de insertar un nuevo nodo
-    private Node add(Node node, K key, V value) {
+    private Node insert(Node node, K key, V value) {
 
         if (node == null) {
             size++;
@@ -103,9 +103,9 @@ public class RBT<K extends Comparable<K>, V> implements Serializable {
         }
 
         if (key.compareTo(node.key) < 0)
-            node.left = add(node.left, key, value);
+            node.left = insert(node.left, key, value);
         else if (key.compareTo(node.key) > 0)
-            node.right = add(node.right, key, value);
+            node.right = insert(node.right, key, value);
         else // key.compareTo(node.key) == 0
             node.value = value;
 
