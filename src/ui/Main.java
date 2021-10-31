@@ -1,5 +1,6 @@
 package ui;
 
+import model.data_structures.AVL;
 import model.data_structures.BST;
 import model.data_structures.Node;
 import model.data_structures.RBT;
@@ -18,7 +19,7 @@ public class Main {
     private static RBT<String, Player> players;
 
     public static void main(String[] args) throws Exception {
-        driver1();
+        driver6();
     }
 
     public static void driver1() throws Exception {
@@ -83,6 +84,17 @@ public class Main {
         ArrayList<Node<String, Integer>> results = stringTree.searchApproximate(stringTree.root(), query, new ArrayList<>());
         System.out.println(results);
         in.close();
+    }
+
+    public static void driver6() {
+        AVL<Integer, String> tree = new AVL<>();
+        String[] strings = {"bag", "confine", "lush", "visitor", "spotted", "jam", "spotty", "curb", "rings", "purpose"};
+        for (int i = 0; i < 10; i++) {
+            String string = strings[i];
+            tree.insert(i, string);
+        }
+        System.out.println(tree.inorder());
+        System.out.println(tree.inorderVals());
     }
 
     private static void dup1(BST<Integer, Integer> tree) {

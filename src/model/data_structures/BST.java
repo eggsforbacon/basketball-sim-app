@@ -44,7 +44,6 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
             if (node.key().compareTo(current.key()) < 0) current = current.left();
             else current = current.right();
             node.setParent(trail);
-
         }
         if (trail == null) root = node;
         else if (node.key().compareTo(trail.key()) < 0) trail.setLeft(node);

@@ -2,8 +2,6 @@ package model.data_structures;
 
 import model.interfaces.IAVL;
 
-import java.util.ArrayList;
-
 public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K, V, Node<K,V>> {
 
     @Override
@@ -23,24 +21,30 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
     }
 
     @Override
-    public void rotateLeft(Node<K, V> node) {
-        Node<K, V> child = node.right();
-        if (node.key().compareTo(node.parent().key()) >= 0) node.parent().setRight(child);
-        else node.parent().setLeft(child);
-        node.setRight(child.left());
-        child.setLeft(node);
+    public void rotateLeft(Node<K, V> x) {
+        Node<K, V> y = x.right();
+        if (x.parent() == null) {
+            setRoot(y);
+            y.setParent(null);
+        }
+        else if (x.key().compareTo(x.parent().key()) >= 0) x.parent().setRight(y);
+        else x.parent().setLeft(y);
+        y.setParent(x.parent());
+        x.setParent(y);
+        x.setRight(y.left());
+        y.setLeft(x);
     }
 
     @Override
     public int balance(Node<K, V> node) {
+        if (node == null) return -1;
         return height(node.right()) - height(node.left());
     }
 
     @Override
-    public void balanceAgain(Node<K, V> node, ArrayList<Node<K, V>> path) {
-        for (Node<K, V> p: path) {
+    public void balanceAgain(Node<K, V> p) {
             int balanceFactor = Math.abs(balance(p));
-            if (balanceFactor > 1) {
+            if (balanceFactor == 2) {
                 Node<K, V> q = p.right();
                 boolean caseA = balance(q) == 1;
                 boolean caseB = balance(q) == 0;
@@ -60,32 +64,25 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
                     rotateRight(p);
                 }
             }
-        }
-    }
-
-    private ArrayList<Node<K, V>> insertBST(K key, V value) {
-        Node<K, V> node = new Node<>(key, value);
-        Node<K, V> trail = null;
-        Node<K, V> current = root();
-        ArrayList<Node<K, V>> path = new ArrayList<>();
-        while (current != null) {
-            trail = current;
-            path.add(trail);
-            if (node.key().compareTo(current.key()) < 0) current = current.left();
-            else current = current.right();
-            node.setParent(trail);
-
-        }
-        if (trail == null) super.setRoot(node);
-        else if (node.key().compareTo(trail.key()) < 0) trail.setLeft(node);
-        else trail.setRight(node);
-        return path;
     }
 
     @Override
     public void insert(K key, V value) {
-        ArrayList<Node<K, V>> path = insertBST(key, value);
+        super.insert(key, value);
         Node<K, V> inserted = search(root(), key);
-        balanceAgain(inserted, path);
+        while (inserted != null) {
+            balanceAgain(inserted);
+            inserted = inserted.parent();
+        }
+    }
+
+    @Override
+    public void delete(K key) {
+        Node<K, V> deleted = search(root(), key);
+        super.delete(key);
+        while (deleted != null) {
+            balanceAgain(deleted);
+            deleted = deleted.parent();
+        }
     }
 }

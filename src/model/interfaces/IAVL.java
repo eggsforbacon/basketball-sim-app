@@ -12,5 +12,5 @@ public interface IAVL<K, V, T> extends IBST<K, V, T> {
 
     int balance(T node);
 
-    void balanceAgain(T node, ArrayList<T> path);
+    void balanceAgain(T node);
 }
