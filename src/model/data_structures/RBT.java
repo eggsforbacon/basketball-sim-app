@@ -1,8 +1,9 @@
 package model.data_structures;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class RBT<K extends Comparable<K>, V> implements Serializable {
+public class RBT<K extends Comparable<K>, V> implements Serializable{
 
     private static final boolean RED = true;
     private static final boolean BLACK = false;
@@ -225,5 +226,23 @@ public class RBT<K extends Comparable<K>, V> implements Serializable {
 
             return successor;
         }
+    }
+
+    public Node search(Node root, K key) {
+        if (root == null || root.key.equals(key)) return root;
+        else if (key.compareTo(root.key) < 0) return search(root.left, key);
+        else return search(root.right, key);
+    }
+
+    public ArrayList<Node> searchApproximate(Node node, String query, ArrayList<Node> results) {
+        if (node == null) return results;
+        else if (node.key.toString().contains(query)) {
+            results = searchApproximate(node.left, query, results);
+            results.add(node);
+            return searchApproximate(node.right, query, results);
+        }
+        results = searchApproximate(node.left, query, results);
+        results = searchApproximate(node.right, query, results);
+        return results;
     }
 }

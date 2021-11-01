@@ -12,12 +12,17 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
     }
 
     @Override
-    public void rotateRight(Node<K, V> node) {
-        Node<K, V> child = node.left();
-        if (node.key().compareTo(node.parent().key()) >= 0) node.parent().setRight(child);
-        else node.parent().setLeft(child);
-        node.setLeft(child.right());
-        child.setRight(node);
+    public void rotateRight(Node<K, V> x) {
+        Node<K, V> y = x.left();
+        if (x.parent() == null) {
+            setRoot(y);
+        }
+        else if (x.key().compareTo(x.parent().key()) >= 0) x.parent().setRight(y);
+        else x.parent().setLeft(y);
+        y.setParent(x.parent());
+        x.setParent(y);
+        x.setLeft(y.right());
+        y.setRight(x);
     }
 
     @Override

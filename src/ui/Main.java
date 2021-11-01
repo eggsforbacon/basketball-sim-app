@@ -89,8 +89,8 @@ public class Main {
     public static void driver6() {
         AVL<Integer, String> tree = new AVL<>();
         String[] strings = {"bag", "confine", "lush", "visitor", "spotted", "jam", "spotty", "curb", "rings", "purpose"};
-        for (int i = 0; i < 10; i++) {
-            String string = strings[i];
+        for (int i = 9; i > -10; i--) {
+            String string = strings[Math.abs(i)];
             tree.insert(i, string);
         }
         System.out.println(tree.inorder());
