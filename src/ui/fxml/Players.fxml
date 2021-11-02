@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="stackPane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="779.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -39,16 +40,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton contentDisplay="CENTER" layoutX="88.0" layoutY="4.0" prefHeight="45.0" prefWidth="58.0" style="-fx-background-color: #009999;" text=" " textAlignment="CENTER">
-                     <graphic>
-                        <ImageView fx:id="iEdit" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../resources/img/others/add-report.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton contentDisplay="CENTER" layoutX="162.0" layoutY="4.0" prefHeight="45.0" prefWidth="58.0" style="-fx-background-color: #009999;" text=" " textAlignment="CENTER">
+                  <JFXButton contentDisplay="CENTER" layoutX="86.0" layoutY="4.0" prefHeight="45.0" prefWidth="58.0" style="-fx-background-color: #009999;" text=" " textAlignment="CENTER">
                      <graphic>
                         <ImageView fx:id="iRemove" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -95,7 +87,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label text="Usage %" GridPane.rowIndex="5">
+                        <Label text="Offensive BPM" GridPane.rowIndex="5">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -116,20 +108,18 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="215.0" layoutY="124.0" prefHeight="21.0" prefWidth="102.0" text="Turn Over %">
+                  <Label layoutX="215.0" layoutY="124.0" prefHeight="21.0" prefWidth="72.0" text="Turn Over">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="218.0" layoutY="177.0" prefHeight="21.0" prefWidth="108.0" text="Offensive BPM">
+                  <Label layoutX="218.0" layoutY="177.0" prefHeight="21.0" prefWidth="45.0" text="Usage">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                   <JFXRadioButton layoutX="306.0" layoutY="97.0" text="Yes" />
                   <JFXRadioButton layoutX="362.0" layoutY="97.0" text="No" />
-                  <JFXTextField focusColor="#4d4d4d" layoutX="329.0" layoutY="115.0" prefHeight="16.0" prefWidth="80.0" unFocusColor="#009999" />
-                  <JFXTextField focusColor="#4d4d4d" layoutX="330.0" layoutY="167.0" prefHeight="16.0" prefWidth="80.0" unFocusColor="#009999" />
                   <JFXButton contentDisplay="CENTER" layoutX="388.0" layoutY="31.0" onAction="#onSearchPlayer" prefHeight="29.0" prefWidth="26.0" style="-fx-background-color: #009999;" text=" ">
                      <graphic>
                         <ImageView fx:id="iSearch" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -162,13 +152,15 @@
                   </JFXButton>
                   <ImageView fx:id="iPhoto" fitHeight="124.0" fitWidth="212.0" layoutX="496.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                   <JFXTextField editable="false" focusColor="#4d4d4d" layoutX="94.0" layoutY="33.0" prefHeight="25.0" prefWidth="282.0" unFocusColor="#009999" />
-                  <JFXTextField focusColor="#4d4d4d" layoutX="93.0" layoutY="141.0" prefHeight="18.0" prefWidth="107.0" unFocusColor="#009999" />
-                  <JFXTextField focusColor="#4d4d4d" layoutX="329.0" layoutY="140.0" prefHeight="25.0" prefWidth="80.0" unFocusColor="#009999" />
-                  <Label layoutX="217.0" layoutY="151.0" prefHeight="21.0" prefWidth="102.0" text="Rebound %">
+                  <Label layoutX="217.0" layoutY="151.0" prefHeight="21.0" prefWidth="69.0" text="Rebound">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
+                  <JFXTextField focusColor="#4d4d4d" layoutX="129.0" layoutY="149.0" prefHeight="25.0" prefWidth="69.0" unFocusColor="#009999" />
+                  <JFXSlider layoutX="298.0" layoutY="126.0" prefHeight="17.0" prefWidth="128.0" value="50.0" />
+                  <JFXSlider layoutX="298.0" layoutY="153.0" prefHeight="17.0" prefWidth="128.0" value="50.0" />
+                  <JFXSlider layoutX="298.0" layoutY="179.0" prefHeight="17.0" prefWidth="128.0" value="50.0" />
                </children>
             </Pane>
             <Pane layoutX="14.0" layoutY="353.0" prefHeight="43.0" prefWidth="750.0" style="-fx-background-color: #f3f3f3;">

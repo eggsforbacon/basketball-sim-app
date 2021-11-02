@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -30,8 +32,6 @@ public class FXPlayer implements Initializable {
     @FXML
     private ImageView iSave;
     @FXML
-    private ImageView iEdit;
-    @FXML
     private ImageView iRemove;
     @FXML
     private ImageView iSearch;
@@ -39,6 +39,18 @@ public class FXPlayer implements Initializable {
     private ImageView iPicture;
     @FXML
     private ImageView iTeam;
+    @FXML
+    private Slider BUsage;
+    @FXML
+    private Slider BTurnOver;
+    @FXML
+    private Slider BRebound;
+    @FXML
+    private Label txtTurnOver;
+    @FXML
+    private Label txtRebound;
+    @FXML
+    private Label txtUsage;
 
     public FXPlayer(Fiba fb, FXController xGUI) {
         this.fb = fb;
@@ -52,7 +64,6 @@ public class FXPlayer implements Initializable {
 
     public void setImages() {
         iSave.setImage(new Image(new File("resources/img/others/save-disk.png").toURI().toString()));
-        iEdit.setImage(new Image(new File("resources/img/others/add-report.png").toURI().toString()));
         iRemove.setImage(new Image(new File("resources/img/others/remove-report.png").toURI().toString()));
         iSearch.setImage(new Image(new File("resources/img/others/search.png").toURI().toString()));
         iPicture.setImage(new Image(new File("resources/img/others/picture.png").toURI().toString()));
