@@ -163,7 +163,7 @@ public class FXPlayer implements Initializable {
 
     @FXML
     public void onDelete(ActionEvent event) {
-
+        
     }
 
     @FXML

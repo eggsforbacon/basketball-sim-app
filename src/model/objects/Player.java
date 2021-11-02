@@ -1,7 +1,6 @@
 package model.objects;
 
 import java.io.Serializable;
-import javafx.scene.image.Image;
 
 public class Player implements Serializable {
 

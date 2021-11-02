@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
@@ -26,13 +25,8 @@
             <Pane layoutX="10.0" layoutY="49.0" prefHeight="57.0" prefWidth="833.0" style="-fx-background-color: #f4efef;">
                <children>
                   <Label layoutX="37.0" layoutY="19.0" prefHeight="21.0" prefWidth="57.0" text="Search by:" />
-                  <JFXTextField fx:id="txtSearchName" disable="true" focusColor="#4d4d4d" layoutX="322.0" layoutY="13.0" prefHeight="31.0" prefWidth="361.0" unFocusColor="#009999" />
-                  <JFXButton layoutX="699.0" layoutY="13.0" onAction="#onShowAll" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #009999;" text="List All" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXComboBox focusColor="#009999" layoutX="102.0" layoutY="14.0" prefHeight="31.0" prefWidth="187.0" unFocusColor="#009999" />
+                  <JFXTextField fx:id="txtSearch" disable="true" focusColor="#4d4d4d" layoutX="322.0" layoutY="13.0" prefHeight="31.0" prefWidth="361.0" unFocusColor="#009999" />
+                  <JFXComboBox fx:id="cbSearch" focusColor="#009999" layoutX="102.0" layoutY="14.0" onMouseClicked="#select" prefHeight="31.0" prefWidth="187.0" unFocusColor="#009999" />
                </children>
             </Pane>
             <Pane layoutX="3.0" layoutY="394.0" prefHeight="43.0" prefWidth="839.0" style="-fx-background-color: #f3f3f3;">
@@ -40,7 +34,7 @@
                   <Label layoutX="14.0" layoutY="11.0" text="Double click on a player to select it" />
                </children>
             </Pane>
-            <TableView fx:id="tblVehicle" layoutX="10.0" layoutY="123.0" onMouseClicked="#onSelectPlayer" prefHeight="271.0" prefWidth="833.0" style="-fx-border-color: #009999;">
+            <TableView fx:id="tblPlayer" layoutX="10.0" layoutY="123.0" onMouseClicked="#onSelectPlayer" prefHeight="271.0" prefWidth="833.0" style="-fx-border-color: #009999;">
                <columns>
                   <TableColumn fx:id="tcName" prefWidth="250.0" text="Name" />
                   <TableColumn fx:id="tcTeam" minWidth="0.0" prefWidth="145.0" text="Team" />
