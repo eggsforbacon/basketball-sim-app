@@ -1,12 +1,15 @@
 package model.data_structures;
 
-public class RedBlackTree<K extends Comparable<K>, V> {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class RBT<K extends Comparable<K>, V> implements Serializable{
 
     private static final boolean RED = true;
     private static final boolean BLACK = false;
     private int size;
 
-    private class Node {
+    private class Node implements Serializable {
         public K key;
         public V value;
         public Node left, right;
@@ -23,7 +26,7 @@ public class RedBlackTree<K extends Comparable<K>, V> {
 
     private Node root;
 
-    public RedBlackTree() {
+    public RBT() {
         root = null;
         size = 0;
     }
@@ -86,14 +89,14 @@ public class RedBlackTree<K extends Comparable<K>, V> {
     }
 
     // Agrega un nuevo elemento (clave, valor) al árbol
-    public void add(K key, V value) {
-        root = add(root, key, value);
+    public void insert(K key, V value) {
+        root = insert(root, key, value);
         root.color = BLACK;// Mantenga el nodo raíz en negro después de agregar
     }
 
     // Insertar elementos (clave, valor) en el árbol rojo-negro enraizado en el nodo, algoritmo recursivo
     // Devuelve la raíz del árbol rojo-negro después de insertar un nuevo nodo
-    private Node add(Node node, K key, V value) {
+    private Node insert(Node node, K key, V value) {
 
         if (node == null) {
             size++;
@@ -101,9 +104,9 @@ public class RedBlackTree<K extends Comparable<K>, V> {
         }
 
         if (key.compareTo(node.key) < 0)
-            node.left = add(node.left, key, value);
+            node.left = insert(node.left, key, value);
         else if (key.compareTo(node.key) > 0)
-            node.right = add(node.right, key, value);
+            node.right = insert(node.right, key, value);
         else // key.compareTo(node.key) == 0
             node.value = value;
 
@@ -223,5 +226,23 @@ public class RedBlackTree<K extends Comparable<K>, V> {
 
             return successor;
         }
+    }
+
+    public Node search(Node root, K key) {
+        if (root == null || root.key.equals(key)) return root;
+        else if (key.compareTo(root.key) < 0) return search(root.left, key);
+        else return search(root.right, key);
+    }
+
+    public ArrayList<Node> searchApproximate(Node node, String query, ArrayList<Node> results) {
+        if (node == null) return results;
+        else if (node.key.toString().contains(query)) {
+            results = searchApproximate(node.left, query, results);
+            results.add(node);
+            return searchApproximate(node.right, query, results);
+        }
+        results = searchApproximate(node.left, query, results);
+        results = searchApproximate(node.right, query, results);
+        return results;
     }
 }

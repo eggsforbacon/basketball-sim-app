@@ -30,7 +30,7 @@ public class Player implements Serializable {
 
     public Player(String name, int number, String position, boolean active,
                   double points, double turnoverPercentage, double usagePercentage, double assistPercentage,
-                  double reboundPercentage, double defensiveBPM, double offensiveBPM, String teamName, String teamCountry ) {
+                  double reboundPercentage, double defensiveBPM, double offensiveBPM, Team team ) {
         this.name = name;
 //        this.age = age;
         this.number = number;
@@ -43,11 +43,10 @@ public class Player implements Serializable {
         this.reboundPercentage = reboundPercentage;
         this.defensiveBPM = defensiveBPM;
         this.offensiveBPM = offensiveBPM;
-        team = new Team(teamName, teamCountry);
+        this.team = team;
     }
 
     // Setters and Getters
-
 
     public String getName() {
         return name;
@@ -109,8 +108,40 @@ public class Player implements Serializable {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(double points) {
         this.points = points;
+    }
+
+    public double getTurnoverPercentage() {
+        return turnoverPercentage;
+    }
+
+    public void setTurnoverPercentage(double turnoverPercentage) {
+        this.turnoverPercentage = turnoverPercentage;
+    }
+
+    public double getUsagePercentage() {
+        return usagePercentage;
+    }
+
+    public void setUsagePercentage(double usagePercentage) {
+        this.usagePercentage = usagePercentage;
+    }
+
+    public double getAssistPercentage() {
+        return assistPercentage;
+    }
+
+    public void setAssistPercentage(double assistPercentage) {
+        this.assistPercentage = assistPercentage;
+    }
+
+    public double getReboundPercentage() {
+        return reboundPercentage;
+    }
+
+    public void setReboundPercentage(double reboundPercentage) {
+        this.reboundPercentage = reboundPercentage;
     }
 
     public double getDefensiveBPM() {
