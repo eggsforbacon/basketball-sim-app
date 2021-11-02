@@ -2,7 +2,10 @@ package model.data_structures;
 
 import model.interfaces.IAVL;
 
-public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K, V, Node<K,V>> {
+import java.io.Serializable;
+
+public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K, V, Node<K,V>>, Serializable {
+    private static final long serialVersionUID = 1;
 
     @Override
     public int height(Node<K, V> node) {

@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 import model.objects.Fiba;
 import threads.FileUpload;
 
-public class FXController implements Serializable, Initializable {
+public class FXController implements Initializable {
 
     @FXML
     private StackPane stackPane;
@@ -36,7 +36,6 @@ public class FXController implements Serializable, Initializable {
     private ImageView iTeam = new ImageView();
     @FXML
     private ImageView iStat = new ImageView();
-    private static final long serialVersionUID = 1;
     private final String SAVE_PATH_FILE = "data/persistent/Data.das";
     @SuppressWarnings("FieldMayBeFinal")
     private Fiba fb;

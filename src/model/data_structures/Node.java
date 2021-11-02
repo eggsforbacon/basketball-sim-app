@@ -7,6 +7,7 @@ public class Node<K extends Comparable<K>, V> implements Serializable {
     private V value;
     private Node<K, V> parent;
     private Node<K, V> left, right;
+    private static final long serialVersionUID = 1;
 
     public Node(K key, V value) {
         this.key = key;

@@ -8,13 +8,15 @@ import ui.FXSplash;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 
-public class Load extends Thread{
+public class Load extends Thread implements Serializable {
 
     private boolean loader;
     private final String SAVE_PATH_FILE = "data/persistent/Data.das";
     private FXSplash fxSplash;
     private ObjectInputStream ois;
+    private static final long serialVersionUID = 1;
 
     public Load(FXSplash splash) {
         this.fxSplash = splash;
