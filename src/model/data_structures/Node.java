@@ -61,7 +61,7 @@ public class Node<K extends Comparable<K>, V> implements Serializable {
     public String toString() {
         return "Node{" +
                 "key = " + key +
-                ", value = " + value +
+                ", value = " + value.toString() +
                 '}';
     }
 }

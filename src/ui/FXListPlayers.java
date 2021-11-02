@@ -75,7 +75,7 @@ public class FXListPlayers implements Initializable {
     public void select(ActionEvent event) {
         if (cbSearch.getValue().equals("Name") || cbSearch.getValue().equals("Team") || cbSearch.getValue().equals("Points")
                 || cbSearch.getValue().equals("Turn Over") || cbSearch.getValue().equals("Usage") || cbSearch.getValue().equals("Rebound")
-                || cbSearch.getValue().equals("Deffensive") || cbSearch.getValue().equals("Offensive")) {
+                || cbSearch.getValue().equals("Defensive") || cbSearch.getValue().equals("Offensive")) {
             txtSearch.setDisable(false);
         } else {
             txtSearch.setDisable(true);

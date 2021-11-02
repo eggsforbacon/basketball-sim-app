@@ -11,36 +11,47 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
     public int height(Node<K, V> node) {
         if (node == null) return -1;
         else if (node.left() == null && node.right() == null) return 0;
-        else return Math.max(height(node.left()), height(node.right())) + 1;
+        else {
+            if (node.left() != null) System.out.println(node.left().toString() + " L");
+            if (node.right() != null) System.out.println(node.right().toString() + " R");
+            System.out.println("---");
+            return Math.max(height(node.left()), height(node.right())) + 1;
+        }
     }
 
     @Override
-    public void rotateRight(Node<K, V> x) {
-        Node<K, V> y = x.left();
-        if (x.parent() == null) {
-            setRoot(y);
+    public void rightRotate(Node<K, V> x) {
+        Node<K, V> pivot = x.left();
+        if (pivot == null) {
+            System.out.println("Pivot null");
+            return;
         }
-        else if (x.key().compareTo(x.parent().key()) >= 0) x.parent().setRight(y);
-        else x.parent().setLeft(y);
-        y.setParent(x.parent());
-        x.setParent(y);
-        x.setLeft(y.right());
-        y.setRight(x);
+        if (x.parent() == null) {
+            setRoot(pivot);
+        } else if (x.key().compareTo(x.parent().key()) >= 0) x.parent().setRight(pivot);
+        else x.parent().setLeft(pivot);
+        pivot.setParent(x.parent());
+        x.setParent(pivot);
+        x.setLeft(pivot.right());
+        pivot.setRight(x);
     }
 
     @Override
-    public void rotateLeft(Node<K, V> x) {
-        Node<K, V> y = x.right();
-        if (x.parent() == null) {
-            setRoot(y);
-            y.setParent(null);
+    public void leftRotate(Node<K, V> x) {
+        Node<K, V> pivot = x.right();
+        if (pivot == null) {
+            System.out.println("Pivot null");
+            return;
         }
-        else if (x.key().compareTo(x.parent().key()) >= 0) x.parent().setRight(y);
-        else x.parent().setLeft(y);
-        y.setParent(x.parent());
-        x.setParent(y);
-        x.setRight(y.left());
-        y.setLeft(x);
+        if (x.parent() == null) {
+            setRoot(pivot);
+            pivot.setParent(null);
+        } else if (x.key().compareTo(x.parent().key()) >= 0) x.parent().setRight(pivot);
+        else x.parent().setLeft(pivot);
+        pivot.setParent(x.parent());
+        x.setParent(pivot);
+        x.setRight(pivot.left());
+        pivot.setLeft(x);
     }
 
     @Override
@@ -61,15 +72,15 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
                 boolean caseD = balance(q) == -1;
                 boolean caseE = balance(q) == 0;
                 boolean caseF = balance(q) == 1;
-                if (caseA || caseB) rotateLeft(p);
-                else if (caseD || caseE) rotateRight(p);
+                if (caseA || caseB) leftRotate(p);
+                else if (caseD || caseE) rightRotate(p);
                 else if (caseC) {
                     q = p.right();
-                    rotateRight(q);
-                    rotateLeft(p);
+                    rightRotate(q);
+                    leftRotate(p);
                 } else if (caseF) {
-                    rotateLeft(q);
-                    rotateRight(p);
+                    leftRotate(q);
+                    rightRotate(p);
                 }
             }
     }
