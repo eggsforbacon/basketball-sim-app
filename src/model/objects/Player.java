@@ -28,8 +28,8 @@ public class Player implements Serializable {
     }
 
     public Player(String name, int number, String position, boolean active,
-            double points, double turnoverPercentage, double usagePercentage, double assistPercentage,
-            double reboundPercentage, double defensiveBPM, double offensiveBPM, Team team, String image) {
+                  double points, double turnoverPercentage, double usagePercentage,
+                  double reboundPercentage, double defensiveBPM, double offensiveBPM, Team team, String image) {
         this.name = name;
 //        this.age = age;
         this.number = number;
@@ -38,12 +38,19 @@ public class Player implements Serializable {
         this.points = points;
         this.turnoverPercentage = turnoverPercentage;
         this.usagePercentage = usagePercentage;
-        this.assistPercentage = assistPercentage;
         this.reboundPercentage = reboundPercentage;
         this.defensiveBPM = defensiveBPM;
         this.offensiveBPM = offensiveBPM;
         this.team = team;
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name = '" + name + '\'' +
+                ", number = " + number +
+                '}';
     }
 
     // Setters and Getters

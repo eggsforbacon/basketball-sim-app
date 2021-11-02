@@ -6,9 +6,9 @@ public interface IAVL<K, V, T> extends IBST<K, V, T> {
 
     int height(T node);
 
-    void rotateRight(T node);
+    void rightRotate(T node);
 
-    void rotateLeft(T node);
+    void leftRotate(T node);
 
     int balance(T node);
 

@@ -183,7 +183,7 @@ public class FXPlayer implements Initializable {
             double deffensive = Double.parseDouble(txtDefensive.getText());
             Team team = cbTeam.getValue();
 
-            fb.addPlayer(new Player(name, number, "Position", active, points, turn, usage, 0.0, rebound, deffensive, offensive, team, imagePath));
+            fb.addPlayer(new Player(name, number, "Position", active, points, turn, usage, rebound, deffensive, offensive, team, imagePath));
             xGUI.saveData();
             xGUI.showAlert(true, "¡Player added!", stackPane);
         } else {
