@@ -151,13 +151,13 @@
                      </font>
                   </JFXButton>
                   <ImageView fx:id="iPhoto" fitHeight="124.0" fitWidth="212.0" layoutX="496.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-                  <JFXTextField editable="false" focusColor="#4d4d4d" layoutX="94.0" layoutY="33.0" prefHeight="25.0" prefWidth="282.0" unFocusColor="#009999" />
+                  <JFXTextField focusColor="#4d4d4d" layoutX="94.0" layoutY="33.0" prefHeight="25.0" prefWidth="282.0" unFocusColor="#009999" />
                   <Label layoutX="217.0" layoutY="151.0" prefHeight="21.0" prefWidth="69.0" text="Rebound">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <JFXTextField focusColor="#4d4d4d" layoutX="129.0" layoutY="149.0" prefHeight="25.0" prefWidth="69.0" unFocusColor="#009999" />
+                  <JFXTextField focusColor="#4d4d4d" layoutX="129.0" layoutY="141.0" prefHeight="25.0" prefWidth="69.0" unFocusColor="#009999" />
                   <JFXSlider layoutX="298.0" layoutY="126.0" prefHeight="17.0" prefWidth="128.0" value="50.0" />
                   <JFXSlider layoutX="298.0" layoutY="153.0" prefHeight="17.0" prefWidth="128.0" value="50.0" />
                   <JFXSlider layoutX="298.0" layoutY="179.0" prefHeight="17.0" prefWidth="128.0" value="50.0" />
