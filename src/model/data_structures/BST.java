@@ -79,20 +79,17 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
         }
         int leftRight = found.parent() != null ? key.compareTo(found.parent().key()) : 0;
         if (found.left() == null && found.right() == null) {
-            System.out.println("Key " + key + " case 1");
             if (leftRight < 0) {
                 found.parent().setLeft(null);
             } else {
                 found.parent().setRight(null);
             }
         } else if (found.left() != null && found.right() != null) {
-            System.out.println("Key " + key + " case 3");
             Node<K, V> replacement = successor(found);
             delete(replacement.key());
             found.setKey(replacement.key());
             found.setValue(replacement.value());
         } else {
-            System.out.println("Key " + key + " case 2");
             Node<K, V> child = found.left() != null ? found.left() : found.right();
             if (leftRight < 0) {
                 found.parent().setLeft(child);

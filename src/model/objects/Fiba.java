@@ -47,7 +47,12 @@ public class Fiba implements Serializable {
     public boolean importData(Fiba fb) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileChooser()));
-            new FileUpload(br, fb).start();
+            FileUpload fup = new FileUpload(br, fb);
+            fup.start();
+            int num = 0;
+            while (fup.isAlive()) {
+                num++;
+            }
             return true;
         } catch (Exception e) {
             return false;

@@ -57,8 +57,6 @@ public class FileUpload extends Thread{
                     fb.getRBTFPlayersUsagePercentage().insert(Double.parseDouble(arrayLine[7]), player);
                     fb.getRBTPlayersPoints().insert(Double.parseDouble(arrayLine[5]), player);
                     fb.getRBTPlayersTurnoverPercentage().insert(Double.parseDouble(arrayLine[6]), player);
-
-                    System.out.println(num);
                     num++;
 
 

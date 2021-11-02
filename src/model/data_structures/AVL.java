@@ -12,23 +12,20 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
         if (node == null) return -1;
         else if (node.left() == null && node.right() == null) return 0;
         else {
-            if (node.left() != null) System.out.println(node.left().toString() + " L");
-            if (node.right() != null) System.out.println(node.right().toString() + " R");
-            System.out.println("---");
             return Math.max(height(node.left()), height(node.right())) + 1;
         }
     }
 
     @Override
     public void rightRotate(Node<K, V> x) {
+        if (x == null) return;
         Node<K, V> pivot = x.left();
-        if (pivot == null) {
-            System.out.println("Pivot null");
-            return;
-        }
+        if (pivot == null) return;
         if (x.parent() == null) {
             setRoot(pivot);
-        } else if (x.key().compareTo(x.parent().key()) >= 0) x.parent().setRight(pivot);
+            pivot.setParent(null);
+        }
+        else if (x.key().compareTo(x.parent().key()) >= 0) x.parent().setRight(pivot);
         else x.parent().setLeft(pivot);
         pivot.setParent(x.parent());
         x.setParent(pivot);
@@ -38,11 +35,9 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
 
     @Override
     public void leftRotate(Node<K, V> x) {
+        if (x == null) return;
         Node<K, V> pivot = x.right();
-        if (pivot == null) {
-            System.out.println("Pivot null");
-            return;
-        }
+        if (pivot == null) return;
         if (x.parent() == null) {
             setRoot(pivot);
             pivot.setParent(null);
