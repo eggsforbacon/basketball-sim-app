@@ -26,19 +26,7 @@
             </MenuBar>
             <Pane layoutY="30.0" prefHeight="450.0" prefWidth="365.0" style="-fx-background-color: #646464;">
                <children>
-                  <JFXButton layoutX="92.0" layoutY="225.0" onAction="#onBStats" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" text="Stats">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fx:id="iStat" fitHeight="46.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../resources/img/others/stats.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton layoutX="92.0" layoutY="136.0" onAction="#onBPlayers" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" text="Players">
+                  <JFXButton layoutX="101.0" layoutY="195.0" onAction="#onBPlayers" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: FFFFFF;" text="Players">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -50,8 +38,11 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <Label layoutX="139.0" layoutY="342.0" text="\@CopyRight" textFill="WHITE" />
-                  <Label layoutX="43.0" layoutY="359.0" text="Arturo Diaz | David Montaño | Samuel Hernandez" textFill="WHITE" />
+                  <Label layoutX="155.0" layoutY="398.0" text="2021 ©" textFill="WHITE" />
+                  <Label layoutX="50.0" layoutY="419.0" text="Arturo Diaz | David Montaño | Samuel Hernandez" textFill="WHITE">
+                     <font>
+                        <Font size="12.0" />
+                     </font></Label>
                </children>
             </Pane>
             <ImageView fx:id="iLogo" fitHeight="314.0" fitWidth="706.0" layoutX="469.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
