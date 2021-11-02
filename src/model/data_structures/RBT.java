@@ -265,7 +265,7 @@ public class RBT<K extends Comparable<K>, V> implements Serializable {
             return results;
         } else if (node.key.toString().contains(query)) {
             results = searchApproximate(node.left, query, results);
-            results.add((V) node);
+            results.add(node.value);
             return searchApproximate(node.right, query, results);
         }
         results = searchApproximate(node.left, query, results);
