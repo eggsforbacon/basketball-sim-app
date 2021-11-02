@@ -47,7 +47,7 @@ public class FileUpload extends Thread{
                     Player player = new Player(arrayLine[0] + " " + arrayLine[1], Integer.parseInt(arrayLine[2]),
                             arrayLine[3], arrayLine[4].equals("Activo"), Double.parseDouble(arrayLine[5]), Double.parseDouble(arrayLine[6]),
                             Double.parseDouble(arrayLine[7]), Double.parseDouble(arrayLine[8]), Double.parseDouble(arrayLine[9]),
-                            Double.parseDouble(arrayLine[10]), Double.parseDouble(arrayLine[11]), fb.getTeams().get(teamIndex));
+                            Double.parseDouble(arrayLine[10]), Double.parseDouble(arrayLine[11]), fb.getTeams().get(teamIndex), null);
 
                     fb.getAVLPlayersDefensiveBPM().insert(Double.parseDouble(arrayLine[10]), player);
                     fb.getAVLPlayersOffensiveBPM().insert(Double.parseDouble(arrayLine[11]), player);

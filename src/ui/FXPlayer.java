@@ -23,6 +23,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.objects.Fiba;
+import model.objects.Player;
 import model.objects.Team;
 
 public class FXPlayer implements Initializable {
@@ -166,12 +167,27 @@ public class FXPlayer implements Initializable {
     }
 
     @FXML
-    public void onSave(ActionEvent event) {
-        if (!txtName.equals("") && cbTeam.getValue() != null && !txtNumber.equals("") && !txtPoints.equals("")
-                && !txtOffensive.equals("") && !txtDefensive.equals("") && tgActive.getSelectedToggle() != null) {
-            System.out.println("yes");
+    public void onSave(ActionEvent event) throws IOException {
+        if ((!txtName.getText().equals("")) && (cbTeam.getValue() != null) && (!txtNumber.getText().equals("")) && (!txtPoints.getText().equals(""))
+                && (!txtOffensive.getText().equals("")) && (!txtDefensive.getText().equals("")) && (tgActive.getSelectedToggle() != null)) {
+
+            String name = txtName.getText();
+            int number = Integer.parseInt(txtNumber.getText());
+            JFXRadioButton selected = (JFXRadioButton) tgActive.getSelectedToggle();
+            boolean active = selected.getText().equals("Yes");
+            double points = Double.parseDouble(txtNumber.getText());
+            double turn = sTurn.getValue();
+            double usage = sUsage.getValue();
+            double rebound = sRebound.getValue();
+            double offensive = Double.parseDouble(txtOffensive.getText());
+            double deffensive = Double.parseDouble(txtDefensive.getText());
+            Team team = cbTeam.getValue();
+
+            fb.addPlayer(new Player(name, number, "Position", active, points, turn, usage, 0.0, rebound, deffensive, offensive, team, imagePath));
+            xGUI.saveData();
+            xGUI.showAlert(true, "¡Player added!", stackPane);
         } else {
-            System.out.println("na");
+            xGUI.showAlert(false, "¡Can't add the player!", stackPane);
         }
     }
 

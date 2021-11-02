@@ -1,11 +1,11 @@
 package model.objects;
 
 import java.io.Serializable;
+import javafx.scene.image.Image;
 
 public class Player implements Serializable {
 
     //Basic Info
-
     private String name;
     private int age;
     private Team team;
@@ -13,7 +13,7 @@ public class Player implements Serializable {
     private String position;
     private String classification;
     private boolean active;
-
+    private String image;
     //Calculated Stats
 
     private double points;
@@ -29,8 +29,8 @@ public class Player implements Serializable {
     }
 
     public Player(String name, int number, String position, boolean active,
-                  double points, double turnoverPercentage, double usagePercentage, double assistPercentage,
-                  double reboundPercentage, double defensiveBPM, double offensiveBPM, Team team ) {
+            double points, double turnoverPercentage, double usagePercentage, double assistPercentage,
+            double reboundPercentage, double defensiveBPM, double offensiveBPM, Team team, String image) {
         this.name = name;
 //        this.age = age;
         this.number = number;
@@ -44,16 +44,24 @@ public class Player implements Serializable {
         this.defensiveBPM = defensiveBPM;
         this.offensiveBPM = offensiveBPM;
         this.team = team;
+        this.image = image;
     }
 
     // Setters and Getters
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getAge() {
