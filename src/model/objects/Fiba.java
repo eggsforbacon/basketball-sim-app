@@ -26,6 +26,7 @@ public class Fiba implements Serializable {
     private static final long serialVersionUID = 1;
 
     public Fiba() {
+        teams = new ArrayList<>();
         BSTPlayersName = new BST<>();
         RBTPlayersPoints = new RBT<>();
         RBTPlayersTurnoverPercentage = new RBT<>();
@@ -35,7 +36,6 @@ public class Fiba implements Serializable {
         AVLPlayersDefensiveBPM = new AVL<>();
         AVLPlayersOffensiveBPM = new AVL<>();
         AVLPlayersTeamName = new AVL<>();
-
     }
 
     public File fileChooser() {
@@ -149,6 +149,5 @@ public class Fiba implements Serializable {
 
     public void addTeam(Team team) {
         teams.add(team);
-
     }
 }

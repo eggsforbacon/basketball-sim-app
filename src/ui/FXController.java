@@ -133,5 +133,7 @@ public class FXController implements Initializable {
         saveData();
     }
 
-
+    public void refreshCbTeam() {
+        xPlayer.onListTeam();
+    }
 }

@@ -48,4 +48,9 @@ public class Team implements Serializable {
     public void removePlayer() {
         players--;
     }
+    
+    @Override
+    public String toString() {
+        return name + "";
+    }
 }

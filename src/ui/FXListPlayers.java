@@ -1,7 +1,6 @@
 package ui;
 
 import com.jfoenix.controls.JFXTextField;
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -9,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import model.objects.Fiba;
@@ -23,8 +20,6 @@ public class FXListPlayers implements Initializable {
     private StackPane stackPane;
     @FXML
     private JFXTextField txtSearchName;
-    @FXML
-    private ImageView iSearch;
     @FXML
     private TableView<?> tblVehicle;
     @FXML
@@ -45,7 +40,6 @@ public class FXListPlayers implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iSearch.setImage(new Image(new File("resources/img/others/search.png").toURI().toString()));
     }
 
     @FXML

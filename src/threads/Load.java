@@ -2,7 +2,6 @@ package threads;
 
 import javafx.application.Platform;
 import model.objects.Fiba;
-import ui.FXController;
 import ui.FXSplash;
 
 import java.io.FileInputStream;
@@ -25,19 +24,19 @@ public class Load extends Thread implements Serializable {
     @Override
     public void run() {
         try {
-
-            Fiba fb  = read();
+            Fiba fb = read();
             Platform.runLater(new Thread(() -> fxSplash.setFb(fb)));
-            ois.close();
 
+            ois.close();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Fiba fb = new Fiba();
+            Platform.runLater(new Thread(() -> fxSplash.setFb(fb)));
         }
     }
 
     public Fiba read() throws IOException, ClassNotFoundException {
         ois = new ObjectInputStream(new FileInputStream(SAVE_PATH_FILE));
-        return  (Fiba) ois.readObject();
+        return (Fiba) ois.readObject();
     }
 
 }
