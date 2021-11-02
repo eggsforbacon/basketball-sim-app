@@ -23,6 +23,7 @@ public class Fiba implements Serializable {
     private AVL<Double, Player> AVLPlayersDefensiveBPM;
     private AVL<Double, Player> AVLPlayersOffensiveBPM;
     private AVL<String, Player> AVLPlayersTeamName;
+    private static final long serialVersionUID = 1;
 
     public Fiba() {
         BSTPlayersName = new BST<>();

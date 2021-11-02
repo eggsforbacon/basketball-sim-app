@@ -17,7 +17,6 @@ import model.objects.Fiba;
 
 public class FXPlayer implements Initializable {
 
-    private static final long serialVersionUID = 1;
     private Fiba fb;
     private FXController xGUI;
     private String imagePath;

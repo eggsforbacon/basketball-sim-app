@@ -2,7 +2,6 @@ package ui;
 
 import model.data_structures.AVL;
 import model.data_structures.BST;
-import model.data_structures.Node;
 import model.data_structures.RBT;
 import model.objects.Fiba;
 import model.objects.Player;
@@ -19,7 +18,7 @@ public class Main {
     private static RBT<String, Player> players;
 
     public static void main(String[] args) throws Exception {
-        driver6();
+        driver1();
     }
 
     public static void driver1() throws Exception {
@@ -81,7 +80,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         System.out.print("Search by key approx: ");
         String query = in.nextLine();
-        ArrayList<Node<String, Integer>> results = stringTree.searchApproximate(stringTree.root(), query, new ArrayList<>());
+        ArrayList<Integer> results = stringTree.searchApproximate(stringTree.root(), query, new ArrayList<>());
         System.out.println(results);
         in.close();
     }
@@ -102,7 +101,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
         System.out.print("Search by key approx: ");
         String query = in.nextLine();
-        ArrayList<Node<Integer, Integer>> results = tree.searchApproximate(tree.root(), query, new ArrayList<>());
+        ArrayList<Integer> results = tree.searchApproximate(tree.root(), query, new ArrayList<>());
         System.out.println(results);
         in.close();
     }

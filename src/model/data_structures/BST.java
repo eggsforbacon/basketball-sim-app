@@ -9,6 +9,7 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     private Node<K, V> root;
     private int size;
+    private static final long serialVersionUID = 1;
 
     public BST() {
         root = null;
@@ -22,11 +23,11 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
         else return search(root.right(), key);
     }
 
-    public ArrayList<Node<K, V>> searchApproximate(Node<K, V> node, String query, ArrayList<Node<K, V>> results) {
+    public ArrayList<V> searchApproximate(Node<K, V> node, String query, ArrayList<V> results) {
         if (node == null) return results;
         else if(node.key().toString().contains(query)) {
             results = searchApproximate(node.left(), query, results);
-            results.add(node);
+            results.add(node.value());
             return searchApproximate(node.right(), query, results);
         }
         results = searchApproximate(node.left(), query, results);
@@ -146,6 +147,20 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
             inorderRecVals(root.right(), sb);
         }
         return sb.toString();
+    }
+
+    public ArrayList<V> toArrayList() {
+        ArrayList<V> array = new ArrayList<>();
+        return toArrayListRec(root, array);
+    }
+
+    private ArrayList<V> toArrayListRec(Node<K, V> root, ArrayList<V> array) {
+        if (root!= null) {
+            toArrayListRec(root.left(), array);
+            array.add(root.value());
+            toArrayListRec(root.right(), array);
+        }
+        return array;
     }
 
     public Node<K, V> root() {
