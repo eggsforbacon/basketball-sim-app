@@ -54,6 +54,7 @@ public class FXListPlayers implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setCBSearch();
+        onTableSearch(fb.getBSTPlayersName().searchApproximate(""));
         txtSearch.setDisable(true);
     }
 
@@ -76,6 +77,7 @@ public class FXListPlayers implements Initializable {
         if (cbSearch.getValue().equals("Name") || cbSearch.getValue().equals("Team") || cbSearch.getValue().equals("Points")
                 || cbSearch.getValue().equals("Turn Over") || cbSearch.getValue().equals("Usage") || cbSearch.getValue().equals("Rebound")
                 || cbSearch.getValue().equals("Defensive") || cbSearch.getValue().equals("Offensive")) {
+            txtSearch.setText("");
             txtSearch.setDisable(false);
         } else {
             txtSearch.setDisable(true);

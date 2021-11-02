@@ -1,5 +1,6 @@
 package ui;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXSlider;
@@ -36,6 +37,8 @@ public class FXPlayer implements Initializable {
     @FXML
     private Pane pane;
     @FXML
+    private ImageView iClear;
+    @FXML
     private ImageView iPhoto;
     @FXML
     private ImageView iSave;
@@ -71,8 +74,10 @@ public class FXPlayer implements Initializable {
     private ToggleGroup tgActive;
     @FXML
     private JFXComboBox<Team> cbTeam;
+    @FXML
+    private JFXButton btImage;
     private Player playerSelected;
-    
+
     public FXPlayer(Fiba fb, FXController xGUI) {
         this.fb = fb;
         this.xGUI = xGUI;
@@ -119,6 +124,7 @@ public class FXPlayer implements Initializable {
         iSearch.setImage(new Image(new File("resources/img/others/search.png").toURI().toString()));
         iPicture.setImage(new Image(new File("resources/img/others/picture.png").toURI().toString()));
         iTeam.setImage(new Image(new File("resources/img/others/teams.png").toURI().toString()));
+        iClear.setImage(new Image(new File("resources/img/others/clear.png").toURI().toString()));
     }
 
     @FXML
@@ -163,8 +169,17 @@ public class FXPlayer implements Initializable {
     }
 
     @FXML
-    public void onDelete(ActionEvent event) {
-        
+    public void onDelete(ActionEvent event) throws IOException {
+        if (playerSelected != null) {
+            fb.removePlayer(playerSelected);
+            xGUI.saveData();
+            xGUI.showAlert(true, "¡Eliminado Correctamente!", stackPane);
+            clearGui();
+            disableGui(false);
+            playerSelected = null;
+        } else {
+            xGUI.showAlert(false, "¡No ha seleccionado un jugador!", stackPane);
+        }
     }
 
     @FXML
@@ -185,6 +200,7 @@ public class FXPlayer implements Initializable {
             Team team = cbTeam.getValue();
 
             fb.addPlayer(new Player(name, number, "Position", active, points, turn, usage, rebound, deffensive, offensive, team, imagePath));
+            clearGui();
             xGUI.saveData();
             xGUI.showAlert(true, "¡Player added!", stackPane);
         } else {
@@ -197,8 +213,62 @@ public class FXPlayer implements Initializable {
         ObservableList<Team> listTeams = FXCollections.observableArrayList(teams);
         cbTeam.setItems(listTeams);
     }
-    
+
     public void refreshPlayer(Player p) {
         playerSelected = p;
+        txtName.setText(playerSelected.getName());
+        cbTeam.setValue(playerSelected.getTeam());
+        txtNumber.setText(String.valueOf(playerSelected.getNumber()));
+        txtPoints.setText(String.valueOf(playerSelected.getPoints()));
+        txtOffensive.setText(String.valueOf(playerSelected.getOffensiveBPM()));
+        txtDefensive.setText(String.valueOf(playerSelected.getDefensiveBPM()));
+        if (playerSelected.isActive()) {
+            rbYes.setSelected(true);
+        } else {
+            rbNo.setSelected(true);
+        }
+        sTurn.setValue(playerSelected.getTurnoverPercentage());
+        sRebound.setValue(playerSelected.getReboundPercentage());
+        sUsage.setValue(playerSelected.getUsagePercentage());
+        iPhoto.setImage(stringToImage(playerSelected.getImage()));
+        disableGui(true);
+    }
+
+    public void disableGui(boolean dis) {
+        txtName.setDisable(dis);
+        cbTeam.setDisable(dis);
+        txtNumber.setDisable(dis);
+        txtPoints.setDisable(dis);
+        txtOffensive.setDisable(dis);
+        txtDefensive.setDisable(dis);
+        rbYes.setDisable(dis);
+        rbNo.setDisable(dis);
+        sTurn.setDisable(dis);
+        sRebound.setDisable(dis);
+        sUsage.setDisable(dis);
+        btImage.setDisable(dis);
+    }
+
+    public void clearGui() {
+        txtName.setText("");
+        cbTeam.setValue(null);
+        txtNumber.setText("");
+        txtPoints.setText("");
+        txtOffensive.setText("");
+        txtDefensive.setText("");
+        rbYes.setSelected(false);
+        rbNo.setSelected(false);
+        sTurn.setValue(50);
+        sRebound.setValue(50);
+        sUsage.setValue(50);
+        iPhoto.setImage(null);
+        imagePath = "";
+    }
+
+    @FXML
+    public void onClear() {
+        clearGui();
+        disableGui(false);
+        playerSelected = null;
     }
 }

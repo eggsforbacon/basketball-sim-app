@@ -144,7 +144,18 @@ public class Fiba implements Serializable {
         getRBTPlayersAssistPercentage().insert(player.getAssistPercentage(), player);
         getRBTPlayersPoints().insert(player.getPoints(), player);
         getRBTPlayersTurnoverPercentage().insert(player.getTurnoverPercentage(), player);
+    }
 
+    public void removePlayer(Player player) {
+        getAVLPlayersDefensiveBPM().delete(player.getDefensiveBPM());
+        getAVLPlayersOffensiveBPM().delete(player.getOffensiveBPM());
+        getBSTPlayersName().delete(player.getName());
+        getAVLPlayersReboundPercentage().delete(player.getReboundPercentage());
+        getAVLPlayersTeamName().delete(player.getTeam().getName());
+        getRBTFPlayersUsagePercentage().remove(player.getUsagePercentage());
+        getRBTPlayersAssistPercentage().remove(player.getAssistPercentage());
+        getRBTPlayersPoints().remove(player.getPoints());
+        getRBTPlayersTurnoverPercentage().remove(player.getTurnoverPercentage());
     }
 
     public void addTeam(Team team) {

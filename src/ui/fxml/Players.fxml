@@ -50,6 +50,15 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
+                  <JFXButton contentDisplay="CENTER" layoutX="160.0" layoutY="4.0" onAction="#onClear" prefHeight="45.0" prefWidth="58.0" style="-fx-background-color: #009999;" text=" " textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fx:id="iClear" fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/img/others/clear.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
                </children>
             </Pane>
             <Pane layoutX="14.0" layoutY="117.0" prefHeight="233.0" prefWidth="750.0" style="-fx-background-color: #f4efef;">
@@ -142,7 +151,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton layoutX="508.0" layoutY="159.0" onAction="#onSelectImage" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #009999;" text="SELECT IMAGE" textFill="WHITE">
+                  <JFXButton fx:id="btImage" layoutX="508.0" layoutY="159.0" onAction="#onSelectImage" prefHeight="36.0" prefWidth="185.0" style="-fx-background-color: #009999;" text="SELECT IMAGE" textFill="WHITE">
                      <graphic>
                         <ImageView fx:id="iPicture" fitHeight="26.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
