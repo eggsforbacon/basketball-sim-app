@@ -25,8 +25,8 @@
             <Pane layoutX="10.0" layoutY="49.0" prefHeight="57.0" prefWidth="833.0" style="-fx-background-color: #f4efef;">
                <children>
                   <Label layoutX="37.0" layoutY="19.0" prefHeight="21.0" prefWidth="57.0" text="Search by:" />
-                  <JFXTextField fx:id="txtSearch" disable="true" focusColor="#4d4d4d" layoutX="322.0" layoutY="13.0" prefHeight="31.0" prefWidth="361.0" unFocusColor="#009999" />
-                  <JFXComboBox fx:id="cbSearch" focusColor="#009999" layoutX="102.0" layoutY="14.0" onMouseClicked="#select" prefHeight="31.0" prefWidth="187.0" unFocusColor="#009999" />
+                  <JFXTextField fx:id="txtSearch" disable="true" focusColor="#4d4d4d" layoutX="322.0" layoutY="13.0" onKeyPressed="#onSearch" onKeyReleased="#onSearch" onKeyTyped="#onSearch" prefHeight="31.0" prefWidth="361.0" unFocusColor="#009999" />
+                  <JFXComboBox fx:id="cbSearch" focusColor="#009999" layoutX="102.0" layoutY="14.0" onAction="#select" prefHeight="31.0" prefWidth="187.0" unFocusColor="#009999" />
                </children>
             </Pane>
             <Pane layoutX="3.0" layoutY="394.0" prefHeight="43.0" prefWidth="839.0" style="-fx-background-color: #f3f3f3;">

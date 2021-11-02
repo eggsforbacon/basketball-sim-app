@@ -3,13 +3,14 @@ package model.data_structures;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RBT<K extends Comparable<K>, V> implements Serializable{
+public class RBT<K extends Comparable<K>, V> implements Serializable {
 
     private static final boolean RED = true;
     private static final boolean BLACK = false;
     private int size;
 
     private class Node implements Serializable {
+
         public K key;
         public V value;
         public Node left, right;
@@ -84,7 +85,9 @@ public class RBT<K extends Comparable<K>, V> implements Serializable{
     // Determine si el nodo raíz del árbol rojo-negro es rojo
     private boolean isRed(Node node) {
         if (node == null)// Naturaleza del árbol rojo-negro Los nodos vacíos son negros por defecto
+        {
             return BLACK;
+        }
         return node.color;
     }
 
@@ -103,22 +106,30 @@ public class RBT<K extends Comparable<K>, V> implements Serializable{
             return new Node(key, value);// nodo rojo
         }
 
-        if (key.compareTo(node.key) < 0)
+        if (key.compareTo(node.key) < 0) {
             node.left = insert(node.left, key, value);
-        else if (key.compareTo(node.key) > 0)
+        } else if (key.compareTo(node.key) > 0) {
             node.right = insert(node.right, key, value);
-        else // key.compareTo(node.key) == 0
+        } else // key.compareTo(node.key) == 0
+        {
             node.value = value;
+        }
 
         // girar a la izquierda
         if (isRed(node.right) && !isRed(node.left))// El niño derecho es rojo, el niño izquierdo no es rojo
+        {
             node = leftRotate(node);
+        }
         // Gira a la derecha
         if (isRed(node.left) && isRed(node.left.left))// El hijo izquierdo es rojo, el hijo izquierdo del hijo izquierdo también es rojo
+        {
             node = rightRotate(node);
+        }
         // cambio de color
         if (isRed(node.left) && isRed(node.right))// Tanto el niño izquierdo como el derecho son rojos
+        {
             flipColors(node);
+        }
         return node;
     }
 
@@ -134,28 +145,34 @@ public class RBT<K extends Comparable<K>, V> implements Serializable{
     // Devuelve el nodo donde se encuentra la clave en el árbol de búsqueda binaria con nodo como nodo raíz
     private Node getNode(Node node, K key) {
 
-        if (node == null) return null;
+        if (node == null) {
+            return null;
+        }
 
-        if(key.equals(node.key)){
+        if (key.equals(node.key)) {
             return node;
         } else if (key.compareTo(node.key) < 0) {
             return getNode(node.left, key);
-        } else return getNode(node.right, key);
+        } else {
+            return getNode(node.right, key);
+        }
 
     }
 
     public void set(K key, V newValue) {
         Node node = getNode(root, key);
-        if (node == null)
+        if (node == null) {
             throw new IllegalArgumentException(key + " doesn't exist!");
+        }
 
         node.value = newValue;
     }
 
     // Devuelve el nodo donde se encuentra el valor mínimo del árbol de búsqueda binario enraizado en el nodo
     private Node minimum(Node node) {
-        if (node.left == null)
+        if (node.left == null) {
             return node;
+        }
         return minimum(node.left);
     }
 
@@ -187,8 +204,9 @@ public class RBT<K extends Comparable<K>, V> implements Serializable{
 
     private Node remove(Node node, K key) {
 
-        if (node == null)
+        if (node == null) {
             return null;
+        }
 
         if (key.compareTo(node.key) < 0) {
             node.left = remove(node.left, key);
@@ -215,7 +233,6 @@ public class RBT<K extends Comparable<K>, V> implements Serializable{
             }
 
             // Cuando los subárboles izquierdo y derecho del nodo a eliminar no están vacíos
-
             // Encuentra el nodo más pequeño más grande que el nodo a eliminar, es decir, el nodo más pequeño del subárbol derecho del nodo a eliminar
             // Utilice este nodo para reemplazar la posición del nodo que se eliminará
             Node successor = minimum(node.right);
@@ -229,16 +246,26 @@ public class RBT<K extends Comparable<K>, V> implements Serializable{
     }
 
     public Node search(Node root, K key) {
-        if (root == null || root.key.equals(key)) return root;
-        else if (key.compareTo(root.key) < 0) return search(root.left, key);
-        else return search(root.right, key);
+        if (root == null || root.key.equals(key)) {
+            return root;
+        } else if (key.compareTo(root.key) < 0) {
+            return search(root.left, key);
+        } else {
+            return search(root.right, key);
+        }
     }
 
-    public ArrayList<Node> searchApproximate(Node node, String query, ArrayList<Node> results) {
-        if (node == null) return results;
-        else if (node.key.toString().contains(query)) {
+    public ArrayList<V> searchApproximate(String query) {
+        ArrayList<V> results = new ArrayList<>();
+        return searchApproximate(root, query, results);
+    }
+
+    public ArrayList<V> searchApproximate(Node node, String query, ArrayList<V> results) {
+        if (node == null) {
+            return results;
+        } else if (node.key.toString().contains(query)) {
             results = searchApproximate(node.left, query, results);
-            results.add(node);
+            results.add((V) node);
             return searchApproximate(node.right, query, results);
         }
         results = searchApproximate(node.left, query, results);

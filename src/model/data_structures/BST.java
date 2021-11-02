@@ -18,14 +18,24 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     @Override
     public Node<K, V> search(Node<K, V> root, K key) {
-        if (root == null || root.key().equals(key)) return root;
-        else if (key.compareTo(root.key()) < 0) return search(root.left(), key);
-        else return search(root.right(), key);
+        if (root == null || root.key().equals(key)) {
+            return root;
+        } else if (key.compareTo(root.key()) < 0) {
+            return search(root.left(), key);
+        } else {
+            return search(root.right(), key);
+        }
+    }
+
+    public ArrayList<V> searchApproximate(String query) {
+        ArrayList<V> results = new ArrayList<>();
+        return searchApproximate(root, query, results);
     }
 
     public ArrayList<V> searchApproximate(Node<K, V> node, String query, ArrayList<V> results) {
-        if (node == null) return results;
-        else if(node.key().toString().contains(query)) {
+        if (node == null) {
+            return results;
+        } else if (node.key().toString().contains(query)) {
             results = searchApproximate(node.left(), query, results);
             results.add(node.value());
             return searchApproximate(node.right(), query, results);
@@ -42,13 +52,20 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
         Node<K, V> current = root;
         while (current != null) {
             trail = current;
-            if (node.key().compareTo(current.key()) < 0) current = current.left();
-            else current = current.right();
+            if (node.key().compareTo(current.key()) < 0) {
+                current = current.left();
+            } else {
+                current = current.right();
+            }
             node.setParent(trail);
         }
-        if (trail == null) root = node;
-        else if (node.key().compareTo(trail.key()) < 0) trail.setLeft(node);
-        else trail.setRight(node);
+        if (trail == null) {
+            root = node;
+        } else if (node.key().compareTo(trail.key()) < 0) {
+            trail.setLeft(node);
+        } else {
+            trail.setRight(node);
+        }
 
         size++;
 
@@ -57,12 +74,17 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
     @Override
     public void delete(K key) {
         Node<K, V> found = search(root, key);
-        if (found == null) throw new NoSuchElementException("Element with key \"" + key + "\" not found in tree");
+        if (found == null) {
+            throw new NoSuchElementException("Element with key \"" + key + "\" not found in tree");
+        }
         int leftRight = found.parent() != null ? key.compareTo(found.parent().key()) : 0;
         if (found.left() == null && found.right() == null) {
             System.out.println("Key " + key + " case 1");
-            if (leftRight < 0) found.parent().setLeft(null);
-            else found.parent().setRight(null);
+            if (leftRight < 0) {
+                found.parent().setLeft(null);
+            } else {
+                found.parent().setRight(null);
+            }
         } else if (found.left() != null && found.right() != null) {
             System.out.println("Key " + key + " case 3");
             Node<K, V> replacement = successor(found);
@@ -72,8 +94,11 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
         } else {
             System.out.println("Key " + key + " case 2");
             Node<K, V> child = found.left() != null ? found.left() : found.right();
-            if (leftRight < 0) found.parent().setLeft(child);
-            else found.parent().setRight(child);
+            if (leftRight < 0) {
+                found.parent().setLeft(child);
+            } else {
+                found.parent().setRight(child);
+            }
         }
 
         size--;
@@ -85,7 +110,9 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     @Override
     public Node<K, V> min(Node<K, V> root) {
-        while (root.left() != null) root = root.left();
+        while (root.left() != null) {
+            root = root.left();
+        }
         return root;
     }
 
@@ -95,13 +122,17 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     @Override
     public Node<K, V> max(Node<K, V> root) {
-        while (root.right() != null) root = root.right();
+        while (root.right() != null) {
+            root = root.right();
+        }
         return root;
     }
 
     @Override
     public Node<K, V> successor(Node<K, V> node) {
-        if (node.right() != null) return min(node.right());
+        if (node.right() != null) {
+            return min(node.right());
+        }
         Node<K, V> successor = node.parent();
         while (successor != null && node == successor.right()) {
             node = successor;
@@ -112,7 +143,9 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
 
     @Override
     public Node<K, V> predecessor(Node<K, V> node) {
-        if (node.left() != null) return max(node.left());
+        if (node.left() != null) {
+            return max(node.left());
+        }
         Node<K, V> successor = node.parent();
         while (successor != null && node == successor.left()) {
             node = successor;
@@ -155,7 +188,7 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
     }
 
     private ArrayList<V> toArrayListRec(Node<K, V> root, ArrayList<V> array) {
-        if (root!= null) {
+        if (root != null) {
             toArrayListRec(root.left(), array);
             array.add(root.value());
             toArrayListRec(root.right(), array);
@@ -175,5 +208,3 @@ public class BST<K extends Comparable<K>, V> implements IBST<K, V, Node<K, V>>, 
         return size;
     }
 }
-
-

@@ -71,7 +71,8 @@ public class FXPlayer implements Initializable {
     private ToggleGroup tgActive;
     @FXML
     private JFXComboBox<Team> cbTeam;
-
+    private Player playerSelected;
+    
     public FXPlayer(Fiba fb, FXController xGUI) {
         this.fb = fb;
         this.xGUI = xGUI;
@@ -195,5 +196,9 @@ public class FXPlayer implements Initializable {
         List<Team> teams = fb.getTeams();
         ObservableList<Team> listTeams = FXCollections.observableArrayList(teams);
         cbTeam.setItems(listTeams);
+    }
+    
+    public void refreshPlayer(Player p) {
+        playerSelected = p;
     }
 }

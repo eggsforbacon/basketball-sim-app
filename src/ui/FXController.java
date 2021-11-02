@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import model.objects.Fiba;
+import model.objects.Player;
 import threads.FileUpload;
 
 public class FXController implements Initializable {
@@ -135,5 +136,9 @@ public class FXController implements Initializable {
 
     public void refreshCbTeam() {
         xPlayer.onListTeam();
+    }
+
+    public void refreshPlayer(Player p) {
+        xPlayer.refreshPlayer(p);
     }
 }
