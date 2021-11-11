@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="basketball-sim-app.jnlp">
+  <information>
+    <title>basketball-sim-app</title>
+    <vendor>cuatr</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="basketball-sim-app.jar" size="3063890" download="eager" />
+    <jar href="lib\jfoenix-8.0.10.jar" size="2710207" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="ui.FXMain"  name="basketball-sim-app" />
+  <update check="always"/>
+</jnlp>
